@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project xls_path="./xls" data_path="./data_out/client" data_type="bin" code_path="./client_out" code_type="c#" enum_conf="./pro_enum.xml" data_start_line="3">
+
+
+  <entry target_name="BigMapInfo"		xls_file="d地图表.xls"		sheet_name="Sheet1">
+    <field column="ID"							name="ID"			type="Number" 		key="True" />
+    <field column="地图名称"					name="mapName"					type="String" />
+    <field column="是否允许中途退出"			name="isPlayingQuit"			type="Number" />
+    <field column="显示离开按钮"			name="isShowQuitBtn"				type="Number" />
+    <field column="是否允许创建队伍"			name="isCreateTeam"				type="Number" />
+    <field column="是否允许加入队伍"			name="isJoinTeam"				type="Number" />
+    <field column="是否允许离开队伍"			name="isLeaveTeam"				type="Number" />
+    <field column="是否允许踢出队伍"			name="isRemoveTeam"				type="Number" />
+    <field column="是否可挂机"					name="isHang"					type="Number" />
+    <field column="同屏挂机"					name="isSameMapHang"			type="Number" />
+    <field column="全屏挂机"					name="isSameScreenHang"			type="Number" />
+    <field column="攻击优先级ID"				name="attackPriorityId"			type="Number" />
+    <field column="挂机受系统设置影响"			name="isAffectBySystemSetting"	type="Number" />
+    <field column="PK模式锁定"					name="isPkModeLock"	type="Number" />
+    <field column="是否允许原地复活"			name="isAllowPlaceRelive"		type="Number" />
+    <field column="允许复活类型"				name="reliveType"		type="String" />
+    <field column="镜头特效路径"				name="cameraFx"		type="String" />
+    <!-- 		<field column="是否显示玩家血条和名称"		name="isShowPlayerNameAndBlood"		type="Number" />
+		<field column="是否显示怪物血条和名称"		name="isShowMonsteNameAndBlood"		type="Number" /> -->
+    <field column="伤害数字是否正常显示"		name="isShowDamageNumber"		type="Number" />
+    <field column="允许进入最低等级限制"		name="openLev"		type="Number" />
+    <field column="是否开启倒计时"			name="isShowCountDonw"		type="Number" />
+    <field column="战斗区是否游泳"			name="iscanswim"		type="Number" />
+    <field column="是否允许转职"			name="isAllowTransOccup"		type="Number" />
+    <field column="是否允许宠物出现"		name="isAllowShowPet"			type="Number" />
+    <field column="是否允许精灵出现"		name="isAllowShowSprite"		type="Number" />
+    <field column="是否屏蔽翅膀"			name="isShieldWing"				type="Number" />
+    <field column="是否记录挂机经验"		name="isRecordHangExp"		type="Number" />
+    <field column="小地图坐标缩放"			name="miniMapScale"			type="Number" />
+    <field column="是否有小地图标识"		name="isMini"				type="Number" />
+    <field column="战场恢复BUFF"			name="recoverBuff"			type="Number" />
+    <field column="是否允许上马"			name="canMount"				type="Number" />
+    <field column="复活时间"				name="reliveTime"			type="String" />
+    <field column="对应世界地图区域"		name="areaName"				type="String" />
+    <field column="地图loading"				name="loading"				type="Number" />
+    <field column="玩家名字显示类型"		name="showNameType"		type="Number" />
+    <field column="玩家血条显示类型"		name="showBloodType"		type="Number" />
+    <field column="是否显示战盟名字"		name="isShowUnionName"		type="Number" />
+    <field column="是否显示称号"			name="isShowTitle"		type="Number" />
+    <field column="是否显示头衔"			name="isShowHonor"		type="Number" />
+    <field column="显示其他角色技能特效数量"		name="otherRoleEffectNum"		type="Number" />
+    <field column="镜头参数X"				name="paramX"					type="Number" />
+    <field column="Top相机旋转Y"			name="RotateY"					type="Number" />
+    <field column="是否允许出现读条按钮"	name="isCanCatchHorse"			type="Number" />
+    <field column="退出提示LanID"			name="quitId"					type="Number"/>
+    <field column="是否允许跳转寻路"		name="chatposFind"				type="Number"/>
+    <field column="是否副本地图"			name="isStoryMap"				type="Number"/>
+	<field column="是否使用血瓶"			name="isUseEmergencyBlood"		type="Number"/>
+	<field column="是否弹出玩家交互UI"			name="isPopInteraction"		type="Number"/>
+	<field column="死亡复活自动挂机"			name="reliveAutoAttackTime"		type="Number"/>
+	<field column="长时间待机自动挂机"			name="idleAutoAttackTime"		type="Number"/>
+	<field column="地图名称id"			name="nameLanID"		type="Number"/>
+	<field column="右侧图片"			name="Icon"		type="String"/>
+	<field column="不显示传送点提示"	name="showTransTips"		type="Number"/>
+	<field column="是否可变身"			name="canTransformer"		type="Number"/>
+	<field column="是否跨服"			name="IsCrossServer"		type="Number"/>
+	<field column="小秘书挂机点"			name="IsHangerMap"		type="Number"/>
+    <field column="统一坐骑皮肤"		name="unifyHorseSkinId"		type="Number"/>
+  </entry>
+    
+</Project>

@@ -1,0 +1,2280 @@
+<Project>
+    <!-- CommonInfo -->
+    <enum name="BoolType" target_name="CommonInfo" desc="布尔类型" >
+        <field name="BoolType_True"     value="1"   desc="是" />
+        <field name="BoolType_False"    value="0"   desc="否" />
+    </enum>
+
+	<enum name="WeaponPos" target_name="EquipBaseInfo" desc="武器模型真实位置" >
+        <field name="pos_right"     value="0"   desc="右手" />
+        <field name="pos_left"      value="1"   desc="左手" />
+    </enum>
+
+	<enum name="ClickEvtType" target_name="ItemBaseInfo" desc="界面弹出类型类型" >
+		<field name="EvtType_None"     value="0"   desc="" />
+        <field name="EvtType_Buy"     value="1"   desc="购买" />
+        <field name="EvtType_Use"    value="2"   desc="使用" />
+		<field name="EvtType_Sell"    value="3"   desc="出售" />
+    </enum>
+	
+	<!-- 这个是货币类型定义，包括特殊货币，商店支持所有货币购买，不支持道具兑换，id应该和道具表货币道具一致 -->
+	<enum name="CurrencyType" target_name="CurrencyInfo" desc="货币类型" >
+		<field name="CurrencyType_Ticket"		value="1"   desc="钻石" />
+		<field name="CurrencyType_Cyanite"    	value="2"   desc="水晶" />
+        <field name="CurrencyType_Coin"     	value="3"   desc="金币" />
+		<field name="CurrencyType_Star"    		value="4"   desc="星币" />
+		<field name="CurrencyType_MagCyanite"	value="5"	desc="魔晶" />
+		<field name="CurrencyType_GuildContri"	value="6"	desc="战盟贡献" />	
+        <field name="CurrencyType_Score"	    value="7"	desc="奇迹积分" />			
+		<field name="CurrencyType_HonorExp"  	value="8"	desc="头衔经验" />	
+		<field name="CurrencyType_HorseCoin"  	value="9"	desc="马牌" />
+		<field name="CurrencyType_Exp"			value="10"	desc="经验" />
+		<field name="CurrencyType_Soul"			value="11"	desc="灵魂" />
+		<field name="CurrencyType_Element"			value="12"	desc="元素魔尘" />
+		<field name="CurrencyType_TalentPoint"			value="13"	desc="天赋点" />
+		<field name="CurrencyType_SoulDust"			value="14"	desc="魂珠粉尘" />
+		<field name="CurrencyType_EvilRewardScore"	value="15"	desc="恶魔果实" />
+		<field name="CurrencyType_Chip"	value="16"	desc="筹码" />
+		<field name="CurrencyType_materials1" value="17" desc="远征材料1"/>
+		<field name="CurrencyType_materials2" value="18" desc="远征材料2"/>
+		<field name="CurrencyType_materials3" value="19" desc="远征材料3"/>
+		<field name="CurrencyType_materials4" value="20" desc="远征材料4"/>
+		<field name="CurrencyType_materials5" value="21" desc="远征材料1"/>
+		<field name="CurrencyType_materials6" value="22" desc="远征材料2"/>
+		<field name="CurrencyType_materials7" value="23" desc="远征材料3"/>
+		<field name="CurrencyType_materials8" value="24" desc="远征材料4"/>
+		<field name="CurrencyType_materials9" value="25" desc="远征材料1"/>
+		<field name="CurrencyType_materials10" value="26" desc="远征材料2"/>
+	
+
+		<field name="CurrencyType_CurrencyMax"	value="26"	desc="货币ID最大值" />
+		<field name="CurrencyType_Emergcy"		value="1006"	desc="急救药" />	
+        <field name="CurrencyType_FruitStre"	value="1013"	desc="力量果实" />			
+		<field name="CurrencyType_FruitAlig"  	value="1014"	desc="敏捷果实" />	
+		<field name="CurrencyType_FruitPhys"	value="1015"	desc="体力果实" />	
+		<field name="CurrencyType_FruitInte"	value="1016"	desc="智力果实" />
+		
+    </enum>
+	
+	<!-- 是否为基础职业定义 -->
+	<enum name="OccupationLevelType" target_name="OccupationInfo" desc="基础职业" >
+		<field name="OccupationLevelType_Base"		value="1"	desc="基础职业" />
+		<field name="OccupationLevelType_Advanced"	value="2"	desc="进阶职业" />
+	</enum>
+
+	<enum name="OccupationType" target_name="OccupationInfo" desc="职业类型" >
+		<field name="Occupation_None"     value="0"   desc="None" />
+        <field name="Occupation_Swardman_Base"     value="1"   desc="剑士" />
+		<field name="Occupation_Swardman_Rider"     value="2"   desc="骑士" />
+		<field name="Occupation_Swardman_Demon"     value="3"   desc="魔剑士" />
+        <field name="Occupation_Archer_Base"     value="4"   desc="弓箭手" />
+		<field name="Occupation_Archer_Expert"     value="5"   desc="神箭手" />
+		<field name="Occupation_Archer_Holy"     value="6"   desc="圣箭手" />
+		<field name="Occupation_Wizerd_Base"     value="7"   desc="魔法师" />
+		<field name="Occupation_Wizerd_Element"     value="8"   desc="元素师" />
+		<field name="Occupation_Wizerd_Magus"     value="9"   desc="魔导师" />
+		<field name="Occupation_Martial_Base"     value="10"   desc="格斗家" />
+		<field name="Occupation_Martial_Artists"     value="11"   desc="格斗大师" />
+		<field name="Occupation_Master_Dark"     value="12"   desc="黑暗大师" />
+    </enum>
+	
+    <!-- ItemInfo -->
+	<enum name="ItemType" target_name="ItemBaseInfo" desc="类型" >
+		<field name="ItemType_None"        value="0"   desc="默认值" />
+		<field name="ItemType_Equip"        value="1"   desc="装备" />
+		<field name="ItemType_Material"     value="2"   desc="材料" />
+		<field name="ItemType_Consume"      value="3"   desc="消耗品" />		
+		<field name="ItemType_Currency"     value="4"   desc="货币" />
+		<field name="ItemType_PetSkillBook" value="5"   desc="宠物技能书"/>
+		<field name="ItemType_Pandora" value="6"   desc="藏宝图"/>
+        <field name="ItemType_Gem"      value="8"   desc="宝石"/>
+		<field name="ItemType_MagicBookChapter"      value="10"   desc="魔法书章节"/>
+		<field name="ItemType_Rune"      value="11"   desc="符文"/>
+		<field name="ItemType_SoulBall"      value="12"   desc="魂珠"/>
+	</enum>
+	
+	<enum name="ItemSellType"	target_name="ItemBaseInfo" desc="可否出售" >
+		<field name="ItemSellType_None"		value="0"	desc="不可出售" />
+		<field name="ItemSellType_Cofc"		value="1"	desc="商会或者系统" />
+		<field name="ItemSellType_Market"	value="2"	desc="市场" />
+	</enum>
+    <enum name="ItemCanUseType"	target_name="ItemBaseInfo" desc="可否出售" >
+		<field name="ItemCanUseType_None"		value="0"	desc="不可使用" />
+		<field name="ItemCanUseType_Use"		value="1"	desc="使用" />
+		<field name="ItemCanUseType_JumpToOtherUI"	value="2"	desc="跳转界面" />
+	</enum>
+
+	<enum name="BindType"	target_name="ItemBaseInfo"	desc="绑定类型">
+		<field name="BindType_EquipBind"	value="0"	desc="装备绑定"/>
+		<field name="BindType_GetBind"		value="1"	desc="拾取绑定"/>
+		<field name="BindType_NeverBind"	value="2"	desc="永不绑定"/>
+	</enum>
+	
+	<enum name="ComposeBindType" target_name="ComposeInfo" desc="合成绑定类型">
+		<field name="ComposeBindType_Rely"		value="0"	desc="根据材料绑定状态" />
+		<field name="ComposeBindType_Bind"		value="1"	desc="一定绑定" />
+		<field name="ComposeBindType_NoBind"	value="2"	desc="一定不绑定" />
+	</enum>
+
+	<enum name="MarketType" target_name="MarketInfo" desc="市场物品类型">
+		<field name="MarketType_None"	value="0"	desc="无" />
+		<field name="MarketType_Item"	value="1"	desc="市场道具" />
+		<field name="MarketType_Pet"	value="2"	desc="市场宠物" />
+		<field name="MarketType_Horse"	value="3"	desc="市场坐骑" />
+		<field name="MarketType_Max"	value="4"	desc="市场物品类型最大值" />
+	</enum>	
+
+	<enum name="ItemColor"	target_name="ItemBaseInfo"	desc="装备品质">
+		<field name="ItemColor_None"	value="0"	desc="默认值"/>
+		<field name="ItemColor_White"	value="1"	desc="白色"/>
+		<field name="ItemColor_Green"	value="2"	desc="绿色"/>
+		<field name="ItemColor_Blue"	value="3"	desc="蓝色"/>
+		<field name="ItemColor_Purple"	value="4"	desc="紫色"/>
+		<field name="ItemColor_Gold"	value="5"	desc="金色"/>
+		<field name="ItemColor_Star_1"	value="6"	desc="一星"/>
+		<field name="ItemColor_Star_2"	value="7"	desc="二星"/>
+		<field name="ItemColor_Star_3"	value="8"	desc="三星"/>
+		<field name="ItemColor_Orange"	value="9"	desc="橙色"/>
+        <field name="ItemColor_Red"	    value="10"	desc="红色"/>
+        <field name="ItemColor_Suit_1"	value="11"	desc="套装一"/>
+		<field name="ItemColor_Angel"	value="12"	desc="大天使"/>
+        <field name="ItemColor_Max"     value="13"   desc="最大值"/>
+	</enum>
+
+    <enum name="ItemEffectType" target_name="ItemBaseInfo" desc="使用效果" >
+        <field name="ItemEffectType_None"    		value="0"  desc="" />
+        <field name="ItemEffectType_AddCoin" 		value="1"  desc="加金币" />
+        <field name="ItemEffectType_AddExp"  		value="2"  desc="加经验" />
+		<field name="ItemEffectType_AddBuff"  		value="3" desc="加BUFF" />
+		<field name="ItemEffectType_FillFirstAid"	value="4"	desc="增加急救池" />
+		<field name="ItemEffectType_AddCrystal"  	value="5"	desc="增加水晶"/>
+		<field name="ItemEffectType_AddHpPool"  	value="6"	desc="增加血池"/>
+		<field name="ItemEffectType_AddMpPool"		value="7"	desc="增加蓝池"/>
+		<field name="ItemEffectType_OpenWing"		value="8"	desc="开启翅膀" />
+		<field name="ItemEffectType_AddStre"		value="9"	desc="永久增加力量" />
+		<field name="ItemEffectType_AddDext"		value="10"	desc="永久增加敏捷" />
+		<field name="ItemEffectType_AddCons"		value="11"	desc="永久增加体力" />
+		<field name="ItemEffectType_AddInte"		value="12"	desc="永久增加智力" />
+		<field name="ItemEffectType_AddItemByLoot"	value="13"	desc="使用礼包" />
+		<field name="ItemEffectType_AddPet"			value="14"	desc="使用宠物蛋" />
+        <field name="ItemEffectType_AddItem"		value="15"	desc="使用礼包" />
+        <field name="ItemEffectType_AddPetExp"      value="16"  desc="增加宠物经验"/>
+        <field name="ItemEffectType_AddSpirit"      value="17"  desc="增加小精灵时间"/>
+		<field name="ItemEffectType_PandoraHoe"      value="18"  desc="潘多拉锄头"/>
+        <field name="ItemEffectType_PandoraBox"      value="19"  desc="潘多拉魔盒"/>
+		<field name="ItemEffectType_HorseIdentify"	value="20"  desc="坐骑鉴定"/>
+		<field name="ItemEffectType_HorseAddExp"	value="21"  desc="坐骑加经验"/>
+		<field name="ItemEffectType_TreasureBox"	value="22"	desc="奇迹宝箱" />
+		<field name="ItemEffectType_AddHorse"		value="23"	desc="使用获得坐骑" />
+        <field name="ItemEffectType_SubPkValue"     value="24"  desc="使用减少pk值"/>
+		<field name="ItemEffectType_AddSpecialHorse" value="25"	desc="获取特殊坐骑" />
+		<field name="ItemEffectType_AddSpecialPet"	 value="26"	desc="获得特殊宠物" />
+		<field name="ItemEffectType_ActivateTitle"  value="27"  desc="激活称号"/>
+		 <field name="ItemEffectType_AddHonorExp"  value="28"  desc="增加头衔经验"/>	
+		<field name="ItemEffectType_PVPInsAddJoinTimes"  value="29"  desc="PVP副本增加参与次数"/>	
+        <field name="ItemEffectType_AddOfflineTime"  value="30"  desc="离线托管时间增加"/>	
+		<field name="ItemEffectType_ArenaAddTimes"  value="31"  desc="竞技场增加参与挑战次数"/>		
+        <field name="ItemEffectType_AddBaseAttr"  value="33"  desc="使用潘多拉果实"/>
+		<field name="ItemEffectType_ExchangeSoul"  value="34"  desc="兑换灵魂"/>
+		<field name="ItemEffectType_PrivilegeCard"  value="35"  desc="特权卡"/>
+		<field name="ItemEffectType_MonCard"       value="36"  desc="月卡"/>
+		<field name="ItemEffectType_AddVipExp"  value="37"  desc="增加角色vip经验"/>
+        <field name="ItemEffectType_AddJobItem" value="38"  desc="根据职业开东西"/>		
+        <field name="ItemEffectType_AddJobLootItem"  value="39"  desc="根据职业开东西loot"/>
+        <field name="ItemEffectType_ActivityInsAddJoinTimes"  value="40"  desc="活动副本增加参与次数"/>
+        <field name="ItemEffectType_LevelBreakThough"  value="41"  desc="等级突破"/>
+        <field name="ItemEffectType_AddHorseSkin"  value="42"  desc="获得坐骑皮肤"/>
+		<field name="ItemEffectType_MagicBookChapter"  value="43"  desc="获得章节"/>
+		<field name="ItemEffectType_MagicBookElement"  value="44"  desc="获得元素魔尘"/>
+		<field name="ItemEffectType_UseVipGift"  value="45"  desc="使用VIP礼包"/>
+
+		<field name="ItemEffectType_MergeNone"		value="50"	desc="碎片合成" />
+		<field name="ItemEffectType_MergeAddItem"	value="51"	desc="多个物品一起使用" />
+		<field name="ItemEffectType_MergeAddPet"	value="52"	desc="使用宠物蛋" />
+		<field name="ItemEffectType_MergeAddHorse"  value="53"  desc="坐骑合成"/>
+       	<field name="ItemEffectType_AddCharmDressTime"  value="55"  desc="时装增加时效"/>
+
+		
+		<field name="ItemEffectType_Max"     	value="60"	desc="最大值" />
+    </enum>
+	
+	<!-- SkillInfo -->
+	<enum name="SkillEffect" target_name="SkillInfo"	desc="技能效果" >
+		<field name="SkillEffect_Size"		value="8"		desc="效果最大值" />
+	</enum>
+	<enum name="SkillTargetType"	target_name="SkillInfo"		desc="技能攻击目标类型" >
+		<field name="SkillTargetType_None"			value="0"		desc="" />
+		<field name="SkillTargetType_Self"			value="1"		desc="角色目标自己" />
+		<field name="SkillTargetType_Team"			value="2"		desc="角色目标队友" />
+		<field name="SkillTargetType_OtherRole"		value="4"		desc="角色目标其他角色" />
+		<field name="SkillTargetType_Monster"		value="8"		desc="角色目标怪物" />
+		<field name="SkillTargetType_MonsterSelf"	value="16"		desc="怪物目标自己" />
+		<field name="SkillTargetType_MonsterCamp"	value="32"		desc="怪物目标自己阵营" />
+		<field name="SkillTargetType_MonsterAtkCamp" value="64"		desc="怪物目标可攻击阵营" />	
+		<field name="SkillTargetType_RoleMercenary"	 value="128"	desc="角色雇佣兵" />
+		<field name="SkillTargetType_MonsterMercenary"	value="256"	desc="怪物雇佣兵" />
+	</enum>
+	<enum name="SkillEffectType" 	target_name="SkillInfo"		desc="技能效果类型" >
+		<field name="SkillEffectType_None"		value="0"		desc="" />
+		<field name="SkillEffectType_PhyDmg"	value="1"		desc="物理伤害" />
+		<field name="SkillEffectType_MagDmg"	value="2"		desc="魔法伤害" />
+		<field name="SkillEffectType_AddBuff"	value="3"		desc="增加BUFF" />
+		<field name="SkillEffectType_DelBuff"	value="4"		desc="删除BUFF" />
+		<field name="SkillEffectType_DelBuffGroup" 	value="5"	desc="删除类型BUFF" />
+		<field name="SkillEffectType_Summon"	value="6"		desc="召唤怪物" />
+		<field name="SkillEffectType_Back"		value="7"		desc="击退" />
+		<field name="SkillEffectType_Down"		value="8"		desc="击倒" />
+		<field name="SkillEffectType_Charge"	value="9"		desc="冲锋" />
+		<field name="SkillEffectType_Indraft"	value="10"		desc="吸入" />
+		<field name="SkillEffectType_DownIndraft"	value="11"	desc="击倒吸入" />
+		<field name="SkillEffectType_MonsterSummon"	value="12"	desc="怪物召唤" />
+		<field name="SkillEffectType_Fly"		value="13"		desc="击飞" />
+		<field name="SkillEffectType_ForwardFly"	value="14"	desc="向前击飞" />
+		<field name="SkillEffectType_ReflectStatDamage"	value="15" 	desc="反弹统计伤害" />
+		<field name="SkillEffectType_HitBackOutMapEffect"	value="16"	desc="怪物特殊击退" />
+		<field name="SkillEffectType_PerDmg"	value="17"		desc="比例伤害" />
+		<field name="SkillEffectType_MonsterTeleport"	value="18"		desc="怪物瞬移" />
+		<field name="SkillEffectType_MonsterPosSummon"	value="19"	desc="怪物点召唤" />
+		<field name="SkillEffectType_AddDotBuff"	value="20"		desc="增加DotBUFF" />
+		<field name="SkillEffectType_ForwardTeleport"	value="21"		desc="前方瞬移" />
+		<field name="SkillEffectType_TargetBlockTeleport"	value="22"		desc="目标阻挡瞬移" />
+		<field name="SkillEffectType_TargetNoBlockTeleport"	value="23"		desc="目标非阻挡瞬移" />
+		<field name="SkillEffectType_SummonMercenary"		value="24"		desc="召唤雇佣兵" />
+		<field name="SkillEffectType_NoBreakBack"		value="25"		desc="不打断击退" />
+		<field name="SkillEffectType_ModifyTargetSkillCD"		value="26"		desc="修改指定技能冷却" />
+		<field name="SkillEffectType_ModifyAllSkillCD"		value="27"		desc="修改所有技能冷却" />
+		<field name="SkillEffectType_SummonNormalMonster"		value="28"		desc="召唤普通怪物" />
+		<field name="SkillEffectType_DirHpDmg"		value="29"		desc="直接血量伤害" />
+		<field name="SkillEffectType_LenPhyDmg"		value="30"		desc="距离物理伤害" />
+		<field name="SkillEffectType_LenMagDmg"		value="31"		desc="距离魔法伤害" />
+		<field name="SkillEffectType_ShieldDmg"		value="32"		desc="直接护盾伤害" />
+		<field name="SkillEffectType_BoomShieldDmg"		value="33"		desc="自爆护盾伤害" />
+		<field name="SkillEffectType_AdaptiveDmg"		value="34"		desc="自适应伤害" />
+	</enum>
+	
+	<enum name="SkillEffectAction"	target_name="SkillInfo"		desc="技能效果受击动作" >
+		<field name="SkillEffectAction_None"	value="0"		desc="" />
+		<field name="SkillEffectAction_Back"	value="1"		desc="后仰" />
+	</enum>
+
+	<enum name="SkillAttackRangeType"	target_name="SkillInfo"		desc="伤害范围类型" >
+		<field name="SkillAttackRangeType_None"	value="0"		desc="" />
+		<field name="SkillAttackRangeType_Circle"	value="1"		desc="圆形" />
+		<field name="SkillAttackRangeType_Sector"	value="2"		desc="锥形" />
+		<field name="SkillAttackRangeType_Rectangle" value="3"		desc="矩形" />
+		<field name="SkillAttackRangeType_Lock" value="4"		desc="锁定" />	
+	</enum>
+	
+	<enum name="SkillMonsterAtkType"	target_name="SkillInfo"		desc="怪物攻击类型" >
+		<field name="SkillMonsterAtkType_None"		value="0"		desc="" />
+		<field name="SkillMonsterAtkType_Lock"		value="1"		desc="锁定" />
+		<field name="SkillMonsterAtkType_Self"			value="2"	desc="自己" />
+		<field name="SkillMonsterAtkType_SelfCircle"	value="3"	desc="自身圆" />
+		<field name="SkillMonsterAtkType_SelfRect"		value="4"	desc="自身矩形" />
+		<field name="SkillMonsterAtkType_TargetCircle"	value="5"	desc="目标圆" />
+	</enum>
+	
+	<enum name="SkillMoveDirectionType"	target_name="SkillInfo"		desc="冲锋位移方向" >
+		<field name="SkillMoveDirectionType_None"		value="0"	desc="" />
+		<field name="SkillMoveDirectionType_Forward"	value="1"	desc="前" />
+		<field name="SkillMoveDirectionType_Back"		value="2"	desc="后" />
+		<field name="SkillMoveDirectionType_Left"		value="3"	desc="左" />
+		<field name="SkillMoveDirectionType_Right"		value="4"	desc="右" />
+	</enum>
+	
+	<enum name="SkillConstValue"		target_name="SkillInfo"		desc="技能常量定义" >
+		<field name="SkillConst_PrepareLimit"		value="300"		desc="起手动作超过该值才会启动准备步骤" />
+		<field name="SkillConst_CDLimit"			value="250"		desc="技能cd最小值，服务器用" />
+	</enum>
+	
+	<enum name="SkillTriggerType" 		target_name="SkillInfo"		desc="技能触发类型" >
+		<field name="SkillTriggerType_None"			value="0"		desc="" /> <!-- 主动触发 -->
+		<field name="SkillTriggerType_Role"			value="1"		desc="主动触发" />
+		<field name="SkillTriggerType_Skill"		value="2"		desc="连招触发" />
+		<field name="SkillTriggerType_Buff"			value="3"		desc="BUFF触发" />
+	</enum>
+	
+	<enum name="SkillDelayType" 		target_name="SkillInfo"		desc="技能延迟类型" >
+		<field name="SkillDelayType_None"			value="0"		desc="" /> 
+		<field name="SkillDelayType_Circle"			value="1"		desc="旋转型" />
+		<field name="SkillDelayType_Spread"			value="2"		desc="扩散型" />
+	</enum>
+	
+	<!--buff -->
+	<enum name="BuffEffectType"		target_name="BuffInfo"		desc="buff效果类型" >
+		<field name="BuffEffectType_None"				value="0"		desc="" />
+		<field name="BuffEffectType_ResumeHp"			value="1"		desc="回血" />
+		<field name="BuffEffectType_DecoreateMaxAndCurrHp"		value="2"		desc="血量加成" />
+		<field name="BuffEffectType_TriggerSkill"		value="3"		desc="触发技能" />
+		<field name="BuffEffectType_Gold"				value="4"		desc="无敌" />
+		<field name="BuffEffectType_Stoic"				value="5"		desc="霸体" />
+		<field name="BuffEffectType_ChgMoveSpeed"		value="6"		desc="修饰移动速度" />
+		<field name="BuffEffectType_ChgPhyDef"			value="7"		desc="修饰物理防御" />
+		<field name="BuffEffectType_ChgMagDef"			value="8"		desc="修饰魔法防御" />
+		<field name="BuffEffectType_ChgMinAtk"			value="9"		desc="修饰最小攻击" />
+		<field name="BuffEffectType_ChgMaxAtk"			value="10"		desc="修饰最大攻击" />
+		<field name="BuffEffectType_ChgStre"			value="11"		desc="修饰力量" />
+		<field name="BuffEffectType_ChgDext"			value="12"		desc="修饰敏捷" />
+		<field name="BuffEffectType_ChgCons"			value="13"		desc="修饰体力" />
+		<field name="BuffEffectType_ChgInte"			value="14"		desc="修饰智力" />
+		<field name="BuffEffectType_ChgMaxHp"			value="15"		desc="修饰生命上限" />
+		<field name="BuffEffectType_ChgMaxMp"			value="16"		desc="修饰魔法上限" />
+		<field name="BuffEffectType_ChgPhyAtkRate"		value="17"		desc="修饰物理伤害率" />
+		<field name="BuffEffectType_ChgMagAtkRate"		value="18"		desc="修饰魔法伤害率" />
+		<field name="BuffEffectType_ChgPhyDefRate"		value="19"		desc="修饰物理减伤率" />
+		<field name="BuffEffectType_ChgMagDefRate"		value="20"		desc="修饰魔法减伤率" />
+		<field name="BuffEffectType_ChgPhyAtkAdd"		value="21"		desc="修饰附加物理伤害" />
+		<field name="BuffEffectType_ChgMagAtkAdd"		value="22"		desc="修饰附加魔法伤害" />
+		<field name="BuffEffectType_ChgPhyAtkSub"		value="23"		desc="修饰抵抗物理伤害" />
+		<field name="BuffEffectType_ChgMagAtkSub"		value="24"		desc="修饰抵抗魔法伤害" />
+		<field name="BuffEffectType_ChgHitRate"			value="25"		desc="修饰命中" />
+		<field name="BuffEffectType_ChgDodgeRate"		value="26"		desc="修饰闪避" />
+		<field name="BuffEffectType_ChgExcellentRate"	value="27"		desc="修饰卓越一击率" />
+		<field name="BuffEffectType_ChgLuckyRate"		value="28"		desc="修饰幸运一击率" />
+		<field name="BuffEffectType_ChgIgnoreRate"		value="29"		desc="修饰无视一击率" />
+		<field name="BuffEffectType_ChgCriticalRate"	value="30"		desc="修饰致命一击率" />
+		<field name="BuffEffectType_ChgConsumeMpRate"	value="31"		desc="修饰耗魔率" />
+		<field name="BuffEffectType_ChgPhyReflectRate"	value="32"		desc="修饰物理反弹几率" />
+		<field name="BuffEffectType_ChgPhyReflectPer"	value="33"		desc="修饰物理反弹伤害" />
+		<field name="BuffEffectType_ChgMagReflectRate"	value="34"		desc="修饰魔法反弹几率" />
+		<field name="BuffEffectType_ChgMagReflectPer"	value="35"		desc="修饰魔法反弹伤害" />
+		<field name="BuffEffectType_ChgBloodRate"		value="36"		desc="修饰吸血几率" />
+		<field name="BuffEffectType_ChgBloodPer"		value="37"		desc="修饰吸血比例" />
+		<field name="BuffEffectType_ChgResumeHp"		value="38"		desc="修饰生命恢复" />
+		<field name="BuffEffectType_ChgResumeMp"		value="39"		desc="修饰魔法恢复" />
+		<field name="BuffEffectType_ChgPhyStrikeRate"	value="41"		desc="修饰物理穿透率" />
+		<field name="BuffEffectType_ChgPhyStrikeAdd"	value="42"		desc="修饰物理穿透值" />
+		<field name="BuffEffectType_ChgMagStrikeRate"	value="43"		desc="修饰魔法穿透率" />
+		<field name="BuffEffectType_ChgMagStrikeAdd"	value="44"		desc="修饰魔法穿透值" />
+		<field name="BuffEffectType_ChgKillMonsterExp"	value="45"		desc="修饰打怪获取经验" />
+        <field name="BuffEffectType_RedName"	        value="46"		desc="红名惩罚" />
+		<field name="BuffEffectType_ChgAtkRate"			value="47"		desc="修饰伤害率" />
+		<field name="BuffEffectType_ChgDefRate"			value="48"		desc="修饰减伤率" />
+		<field name="BuffEffectType_Dizzy"				value="50"		desc="眩晕" />
+		<field name="BuffEffectType_Freeze"				value="51"		desc="冰冻" />
+		<field name="BuffEffectType_FixedBody"			value="52"		desc="定身" />
+		<field name="BuffEffectType_StatDamage"			value="53"		desc="统计伤害" />
+		<field name="BuffEffectType_ChangeToMonster"	value="54"		desc="变身怪物" />
+		<field name="BuffEffectType_DisableAttack"		value="55"		desc="无法攻击" />
+		<field name="BuffEffectType_Silent"				value="56"		desc="沉默"	/>
+		<field name="BuffEffectType_SubHpByParam"		value="57"		desc="参数扣血" />
+		<field name="BuffEffectType_SubHpDirectly"		value="58"		desc="直接扣血" />
+		<field name="BuffEffectType_ChgBothDef"			value="59"		desc="修饰物理魔法防御" />
+    	<field name="BuffEffectType_HideWeapon"			value="60"		desc="武器隐藏" />
+		<field name="BuffEffectType_ChangeWeapon"		value="61"		desc="武器替换" />
+		<field name="BuffEffectType_ChgHitRateFixed"	value="62"		desc="修饰命中修正" />
+		<field name="BuffEffectType_ChgDodgeRateFixed"	value="63"		desc="修饰闪避修正" />
+    	<field name="BuffEffectType_ChangeModel"		value="64"		desc="替换模型" />
+    	<field name="BuffEffectType_ChangeWing"			value="65"		desc="替换翅膀" />
+		<field name="BuffEffectType_ResumeHpMp"			value="66"		desc="回血回蓝" />
+		<field name="BuffEffectType_ChgEncourgeAtkRate"			value="67"		desc="修饰鼓舞伤害率" />
+		<field name="BuffEffectType_ChgEncourgeDefRate"			value="68"		desc="修饰鼓舞减伤率" />
+		<field name="BuffEffectType_ChgKillMonsterExpTeam"		value="69"		desc="修饰组队打怪经验加成" />
+		<field name="BuffEffectType_ChgPkAttr"			value="70"		desc="修饰战斗属性" />
+		<field name="BuffEffectType_AddRage"			value="71"		desc="增加怒气" />
+		<field name="BuffEffectType_ChgFieldKillMonsterExpTeam"		value="72"		desc="修饰组队野外打怪经验加成" />
+
+	</enum>
+
+	<enum name="BuffClearType"		target_name="BuffClearInfo"		desc="buff清除条件类型" >
+		<field name="BuffClearType_None"				value="0"		desc="" />
+		<field name="BuffClearType_ShieldPerLower"		value="1"		desc="护盾值低于百分比" />
+		<field name="BuffClearType_ShieldPerHigher"		value="2"		desc="护盾值高于百分比" />
+		<field name="BuffClearType_HpPerLower"		value="3"		desc="生命值低于百分比" />
+		<field name="BuffClearType_HpPerHigher"		value="4"		desc="生命值高于百分比" />
+	</enum>	
+
+	<!--summon -->
+	<enum name="SummonStrikeType"		target_name="SummonInfo"	desc="召唤物触发类型" >
+		<field name="SumonnStrikeType_Instant"	value="1"		desc="立即生效" />
+		<field name="SumonnStrikeType_Touch"	value="2"		desc="触发生效" />
+	</enum>
+
+	<enum name="SummonShapeType"		target_name="SummonInfo"	desc="召唤物形状类型" >
+		<field name="SumonnShapeType_Round"		value="1"		desc="圆形" />
+		<field name="SumonnShapeType_Square"	value="2"		desc="矩形" />
+	</enum>
+	
+	<!-- passiveSkill -->
+	<enum name="PassiveSkillType" 	target_name="PassiveSkillInfo"		desc="被动技能类型" >
+		<field name="PassiveSkillType_None"	value="0"		desc="" />
+		<field name="PassiveSkillType_Occupation"	value="1"		desc="职业被动技能" />
+		<field name="PassiveSkillType_Shield"		value="2"		desc="护盾被动技能" />
+		<field name="PassiveSkillType_Pokedex"		value="3"		desc="图鉴被动技能" />
+		<field name="PassiveSkillType_Talent"		value="4"		desc="天赋被动技能" />
+		<field name="PassiveSkillType_EquipSuit"	value="5"		desc="套装被动技能" />
+		<field name="PassiveSkillType_Transformer"	value="6"		desc="变身被动技能" />
+	</enum>
+	<enum name="PassiveSkillUnlockType" 	target_name="PassiveSkillInfo"		desc="被动技能解锁类型" >
+		<field name="PassiveSkillUnlockType_None"		value="0"		desc="" />
+		<field name="PassiveSkillUnlockType_OccGrade"	value="1"		desc="职业阶段" />
+		<field name="PassiveSkillUnlockType_Shield"			value="2"		desc="护盾等级" />
+	</enum>
+
+	<enum name="PassiveSkillTriggerType" 	target_name="PassiveSkillTriggerBaseInfo"		desc="被动技能触发条件类型" >
+		<field name="PassiveSkillTriggerType_None"				value="0"		desc="" />
+		<field name="PassiveSkillTriggerType_Team"				value="1"		desc="队伍触发" />
+		<field name="PassiveSkillTriggerType_Self"				value="2"		desc="个人触发" />
+		<field name="PassiveSkillTriggerType_BeginAttack"			value="3"		desc="释放技能" />
+		<field name="PassiveSkillTriggerType_AttackWithTarget"			value="4"		desc="攻击到目标" />
+		<field name="PassiveSkillTriggerType_BeAttackedWithTarget"		value="5"		desc="受到单位攻击" />
+		<field name="PassiveSkillTriggerType_ShieldResume"		value="6"		desc="护盾回复" />
+		<field name="PassiveSkillTriggerType_EnterMap"			value="7"		desc="进入地图" />
+		<field name="PassiveSkillTriggerType_Persist"			value="8"		desc="持续生效" />
+		<field name="PassiveSkillTriggerType_AttackBefore"		value="9"		desc="技能作用到目标" />
+		<field name="PassiveSkillTriggerType_SkillKill"		value="10"		desc="技能击杀单位" />
+		<field name="PassiveSkillTriggerType_SkillMiss"		value="11"		desc="技能目标未命中" />
+		<field name="PassiveSkillTriggerType_SkillBroken"		value="12"		desc="技能被打断" />
+		<field name="PassiveSkillTriggerType_Transform"		value="13"		desc="变身" />
+	</enum>
+	<enum name="PassiveSkillExecCondType" 	target_name="PassiveSkillTriggerBaseInfo"		desc="被动技能执行条件类型" >
+		<field name="PassiveSkillExecCondType_None"					value="0"		desc="" />
+		<field name="PassiveSkillExecCondType_ShieldPerHigher"		value="1"		desc="护盾值高于百分比" />
+		<field name="PassiveSkillExecCondType_ShieldPerLower"		value="2"		desc="护盾值低于百分比" />
+
+		<field name="PassiveSkillExecCondType_HorseStar"			value="3"		desc="坐骑星数大于等于" />
+		<field name="PassiveSkillExecCondType_PetStar"			value="4"		desc="宠物星数大于等于" />
+		<field name="PassiveSkillExecCondType_GemStar"			value="5"		desc="宝石等级大于等于" />
+		<field name="PassiveSkillExecCondType_GodWing"			value="6"		desc="神翼等级大于等于" />
+		<field name="PassiveSkillExecCondType_EquipEnhance"			value="7"		desc="全身强化等级大于等于" />
+		<field name="PassiveSkillExecCondType_EquipPowerOn"			value="8"		desc="全身追加等级大于等于" />
+		<field name="PassiveSkillExecCondType_ShieldLevel"			value="9"		desc="护盾等级大于等于" />
+		<field name="PassiveSkillExecCondType_Pokedex"			value="10"		desc="典藏卡评分大于等于" />
+		<field name="PassiveSkillExecCondType_AchivePoint"			value="11"		desc="总成就点大于等于" />
+		<field name="PassiveSkillExecCondType_GodEquip"			value="12"		desc="神装放入装备" />
+
+		<field name="PassiveSkillExecCondType_HpPerHigher"			value="13"		desc="血量高于百分比" />
+		<field name="PassiveSkillExecCondType_HpPerLower"			value="14"		desc="血量低于百分比" />
+		<field name="PassiveSkillExecCondType_AtBuffGroup"			value="15"		desc="处于状态组" />
+		<field name="PassiveSkillExecCondType_IsHard"				value="16"		desc="处于硬直状态" />
+		<field name="PassiveSkillExecCondType_PetEquip"				value="17"		desc="宠物出战" />
+		<field name="PassiveSkillExecCondType_InTransform"			value="18"		desc="自身处于变身状态" />
+	</enum>
+	<enum name="PassiveSkillExecEffectType" 	target_name="PassiveSkillTriggerBaseInfo"		desc="被动技能执行效果类型" >
+		<field name="PassiveSkillExecEffectType_None"				value="0"		desc="" />
+		<field name="PassiveSkillExecEffectType_AddBuff"			value="1"		desc="挂载buff" />
+		<field name="PassiveSkillExecEffectType_AddBaseAttr"		value="2"		desc="增加基础属性" />
+		<field name="PassiveSkillExecEffectType_AddPkAttr"			value="3"		desc="增加pk属性" />
+		<field name="PassiveSkillExecEffectType_ModifySkillDmg"		value="4"		desc="修改技能伤害" />
+		<field name="PassiveSkillExecEffectType_ModifyAllSkillCD"	value="5"		desc="修改所有技能冷却" />
+		<field name="PassiveSkillExecEffectType_ModifyTargetSkillCD"		value="6"		desc="修改指定技能冷却" />
+		<field name="PassiveSkillExecEffectType_AddRage"			value="7"		desc="加怒气" />
+		<field name="PassiveSkillExecEffectType_Max"				value="8"		desc="最大值" />
+	</enum>
+
+	<enum name="PassiveSkillTriggerTargetType" target_name="PassiveSkillTriggerBaseInfo"		desc="被动技能触发目标类型" >
+		<field name="PassiveSkillTriggerTargetType_OtherRole"		value="1"		desc="其他角色" />
+		<field name="PassiveSkillTriggerTargetType_Monster"			value="2"		desc="小怪" />
+		<field name="PassiveSkillTriggerTargetType_Jingying"		value="4"		desc="精英怪" />
+		<field name="PassiveSkillTriggerTargetType_Boss"			value="8"		desc="Boss" />
+		<field name="PassiveSkillTriggerTargetType_Mercenary"		value="16"		desc="雇佣兵" />
+		<field name="PassiveSkillTriggerTargetType_FakeMonster"		value="32"		desc="玩家镜像" />
+		<field name="PassiveSkillTriggerTargetType_RoleSelf"		value="64"		desc="自己" />
+		<field name="PassiveSkillTriggerTargetType_TeamMember"		value="128"		desc="队友" />
+	</enum>	
+
+	<enum name="PassiveSkillExecTargetType" target_name="PassiveSkillTriggerBaseInfo"		desc="被动技能执行目标类型" >
+		<field name="PassiveSkillExecTargetType_Self"		value="1"		desc="自己" />
+		<field name="PassiveSkillExecTargetType_TeamMember"	value="2"		desc="队友" />
+		<field name="PassiveSkillExecTargetType_Mercenary"	value="4"		desc="自己的雇佣兵" />
+		<field name="PassiveSkillExecTargetType_Atker"		value="8"		desc="攻击方" />
+		<field name="PassiveSkillExecTargetType_Target"		value="16"		desc="目标方" />
+	</enum>	
+
+	<enum name="PassiveSkillBaseAttrType" target_name="PassiveSkillTriggerBaseInfo"		desc="被动技能-基础属性类型" >
+		<field name="PassiveSkillBaseAttrType_Stre"		value="1"		desc="加力量" />
+		<field name="PassiveSkillBaseAttrType_Inte"		value="2"		desc="加智力" />
+		<field name="PassiveSkillBaseAttrType_Dext"		value="3"		desc="加敏捷" />
+		<field name="PassiveSkillBaseAttrType_Cons"		value="4"		desc="加体力" />
+		<field name="PassiveSkillBaseAttrType_SIDC"		value="5"		desc="加四维" />
+	</enum>		
+
+	<enum name="MonsterType"		target_name="MonsterInfo"	desc="怪物类型" >
+		<field name="MonsterType_Monster"		value="1"		desc="怪物" />
+		<field name="MonsterType_Jingying"		value="2"		desc="精英" />
+		<field name="MonsterType_Boss"			value="3"		desc="Boss" />
+		<field name="MonsterType_Summon"		value="4"		desc="召唤物" />
+		<field name="MonsterType_Fly"			value="5"		desc="飞行物" />
+		<field name="MonsterType_WorldBoss"		value="6"		desc="世界Boss" />
+		<field name="MonsterType_Pet"			value="7"		desc="宠物" />
+		<field name="MonsterType_Mercenary"		value="8"		desc="雇佣兵" />
+		<field name="MonsterType_Horse"			value="9"		desc="坐骑" />
+		<field name="MonsterType_Nian"			value="10"		desc="年兽" />
+		<field name="MonsterType_ChaosBoss"		value="11"		desc="跨服boss" />
+	</enum>
+	
+	<enum name="SkillComboType"		target_name="SkillInfo"	desc="自动Or手动连招" >
+		<field name ="SkillComboType_None"		value ="0"		desc="" />
+		<field name="SkillComboType_Manual"		value="1"		desc="手动" />
+		<field name="SkillComboType_Auto"		value="2"		desc="自动" />
+	</enum>
+	
+	<enum name="CoordType"		target_name="QuakeInfo"	desc="震动坐标类型" >
+		<field name="CoordType_Self"		value="0"		desc="自身面向" />
+		<field name="CoordType_World"		value="1"		desc="世界坐标" />
+		<field name="CoordTyoe_Camera"		value="2"		desc="镜头面向" />
+	</enum>
+	
+	<enum name="AffectTargetType"		target_name="QuakeInfo"	desc="影响目标类型" >
+		<field name="AffectTargetType_Self"				value="0"		desc="自己" />
+		<field name="AffectTargetType_SelfAndEnemy"		value="1"		desc="自己和敌方" />
+		<field name="AffectTargetType_All"				value="2"		desc="所有人" />
+	</enum>
+	
+	<enum name="DirectionType"		target_name="QuakeInfo"	desc="震动方向类型" >
+		<field name="DirectionType_Plus"		value="0"		desc="正" />
+		<field name="DirectionType_Minus"		value="1"		desc="负" />
+	</enum>
+
+	<enum name="LootType"		target_name="LootBaseInfo"	desc="掉落类型" >
+		<field name="LootType_Common"		value="0"		desc="常规掉落"/>
+		<field name="LootType_Team"			value="1"		desc="集体掉落"/>
+		<field name="LootType_Kalima"		value="2"		desc="卡利玛神庙掉落"/>
+	</enum>
+	
+	<enum name="StateTransType"		target_name="StateTransInfo"	desc="状态类型" >
+		<field name="None"			value="0"		desc="" />
+		<field name="Login"			value="1"		desc="角色登陆" />
+    <field name="Login_Idel"			value="2"		desc="选角待机" />
+		<field name="Safe_Idle"		value="3"		desc="（安全区）待机" />
+		<field name="Safe_Walk"		value="4"		desc="（安全区）行走" />
+		<field name="Safe_Show1"	value="5"		desc="（安全区）待机表演一" />
+		<field name="Safe_Show2"	value="6"		desc="（安全区）待机表演二" />
+		<field name="No_Wing_Idle"	value="7"		desc="（战斗区）无翅膀待机" />
+		<field name="No_Wing_Walk"	value="8"		desc="（战斗区）无翅膀跑步" />
+		<field name="Wing_Idle"		value="9"		desc="（战斗区）有翅膀待机" />
+		<field name="Wing_Walk"		value="10"		desc="（战斗区）有翅膀飞行" />
+    <field name="Swim"		value="11"		desc="（战斗区）游泳" />
+    <field name="ShowIdel"		value="12"		desc="怪物表演" />
+    <field name="GetHit"		value="13"		desc="普通受击" />
+		<field name="HitBack"		value="14"		desc="击退" />
+		<field name="HitDownPre"	value="15"		desc="击倒（从站立到倒地）" />
+		<field name="HitDownLoop"	value="16"		desc="击倒（倒地Loop)" />
+		<field name="HitDownEnd"	value="17"		desc="击倒（倒地起身)" />
+		<field name="Dizzy"			value="18"		desc="眩晕" />
+		<field name="Death_Stand"	value="19"		desc="站立时死亡" />
+		<field name="Death_Down"	value="20"		desc="倒地时死亡" />
+		<field name="Relive"		value="21"		desc="复活" />
+    <field name="UnChooseIdel"		value="22"		desc="未选中待机" />
+    <field name="ChooseWingShow"		value="23"		desc="选中表演（带翅膀）" />
+    <field name="ChooseShow"		value="24"		desc="选中表演（无翅膀）" />
+    <field name="ChooseWingIdel"		value="25"      desc="选中待机（带翅膀）" />
+    <field name="ChooseIdel"		value="26"      desc="选中待机（无翅膀）" />
+    <field	name="MountIdel"		value="27"				desc="骑乘待机动作"	  />
+    <field	name="MountWalk"		value="28"				desc="骑乘跑步动作"	  />
+    <field	name="Collect"		value="29"				desc="采集动作"	  />
+    <field	name="Born"		value="30"				desc="出生动作"	  />
+    <field name="Attack1"		value="31"		desc="普攻1" />
+		<field name="Attack2"		value="32"		desc="普攻2" />
+		<field name="Attack3"		value="33"		desc="普攻3" />
+		<field name="Attack4"		value="34"      desc="普攻4" />
+		<field name="Attack5"		value="35"      desc="普攻5" />      
+		<field name="Skill1"		value="36"		desc="技能状态1" />
+		<field name="Skill2"		value="37"		desc="技能状态2" />
+		<field name="Skill3"		value="38"		desc="技能状态3" />
+		<field name="Skill4"		value="39"		desc="技能状态4" />
+		<field name="Skill5"		value="40"		desc="技能状态5" />
+		<field name="Skill6"		value="41"		desc="技能状态6" />
+		<field name="Skill7"		value="42"		desc="技能状态7" />
+		<field name="Skill8"		value="43"		desc="技能状态8" />
+	</enum>
+
+	<enum name="EquipType"		target_name="EquipBaseInfo"		desc="装备类型">
+		<field name="EquipType_BigSword"		value="1"		desc="重剑"/>
+		<field name="EquipType_SmallSword"		value="2"		desc="单手剑"/>
+		<field name="EquipType_Hotsue"			value="3"		desc="法杖"/>
+		<field name="EquipType_Mace"			value="4"		desc="权杖"/>
+		<field name="EquipType_Bow"				value="5"		desc="弓箭"/>
+		<field name="EquipType_CrossBow"		value="6"		desc="弩"/>
+		<field name="EquipType_Shield"			value="7"		desc="盾牌"/>
+		<field name="EquipType_CrossBowTube"	value="8"		desc="弩筒"/>
+		<field name="EquipType_Hat"				value="9"		desc="帽子"/>
+		<field name="EquipType_Armor"			value="10"		desc="衣服"/>
+		<field name="EquipType_Leg"				value="11"		desc="护腿"/>
+		<field name="EquipType_Gauntlets"		value="12"		desc="护腕"/>
+		<field name="EquipType_Boot"			value="13"		desc="靴子"/>
+		<field name="EquipType_Neck"			value="14"		desc="项链"/>
+		<field name="EquipType_Ring"			value="15"		desc="戒指"/>
+	</enum>
+
+	<enum name="EquipPos"		target_name="EquipBaseInfo"		desc="装备部位">	
+		<field name="EquipPos_HandLeft"		value="1"		desc="左手"/>
+		<field name="EquipPos_HandRight"	value="2"		desc="右手"/>
+		<field name="EquipPos_HandDouble"	value="3"		desc="双手(右手)"/>
+		<field name="EquipPos_Head"			value="4"		desc="头"/>
+		<field name="EquipPos_Armor"		value="5"		desc="衣服"/>
+		<field name="EquipPos_Leg"			value="6"		desc="护腿"/>
+		<field name="EquipPos_Gauntlets"	value="7"		desc="护腕"/>
+		<field name="EquipPos_Shoot"		value="8"		desc="鞋子"/>
+		<field name="EquipPos_Neck"			value="9"		desc="项链"/>
+		<field name="EquipPos_Ring"			value="10"		desc="戒指"/>
+		<field name="EquipPos_HandAll"		value="11"		desc="左右手"/>
+		<field name="EquipPos_HandLeftToRight"		value="12"		desc="左手到右手（理论左手位置，表现放在右手位置）"/>
+		<field name="EquipPos_HandRightToLeft"	value="13"		desc="右手到左手（理论右手位置，表现放在左手位置）"/>
+	</enum>
+
+	<enum name="EquipDataValue"		target_name="EquipBaseInfo"		desc="装备类型">
+		<field name="EquipDataValue_LeftBaseModel"			value="1"		desc="左武器模型(基础)"/>
+		<field name="EquipDataValue_LeftCreateModel"		value="2"		desc="左武器模型(创角)"/>
+		<field name="EquipDataValue_LeftBonePos"			value="3"		desc="左手武器骨骼节点(背部基础)"/>
+		<field name="EquipDataValue_RightBaseModel"			value="4"		desc="右武器模型(基础)"/>
+		<field name="EquipDataValue_RightCreateModel"		value="5"		desc="右武器模型(创角)"/>
+		<field name="EquipDataValue_RightBonePos"			value="6"		desc="右手武器骨骼节点(背部基础)"/>
+		<field name="EquipDataValue_WingModel"				value="7"		desc="翅膀模型(创角)"/>
+		<field name="EquipDataValue_WingBonePos"			value="8"		desc="翅膀骨骼节点"/>
+		<field name="EquipDataValue_LeftWeaponBonePos"			value="9"		desc="攻击左手武器骨骼节点(左手基础)"/>
+		<field name="EquipDataValue_RightWeaponBonePos"			value="10"		desc="攻击右手武器骨骼节点(左手基础)"/>
+	</enum>
+
+	<enum name="AttackType"		target_name="RedNameInfo"		desc="攻击模式">
+		<field name="AttackType_Peace"		value="1"			desc="和平模式"/>
+		<field name="AttackType_Self"		value="2"			desc="善恶模式"/>
+		<field name="AttackType_Alliance"	value="3"			desc="战盟模式"/>
+		<field name="AttackType_Team"		value="4"			desc="组队模式"/>
+		<field name="AttackType_All"		value="5"			desc="全体模式"/>
+		<field name="AttackType_Camp"		value="6"			desc="阵营模式"/>
+		
+		<field name="AttackType_Max"		value="7"			desc="最大值"/>
+	</enum>
+
+	<enum name="AttrType"		target_name="AttrInfo"		desc="属性类型">
+		<field name="AttrType_maxHpBase"	value="1"		desc="基础生命"/>
+		<field name="AttrType_maxHpAdd"		value="2"		desc="生命数值修正"/>
+		<field name="AttrType_maxHpPer"		value="3"		desc="生命百分比修正"/>
+
+		<field name="AttrType_maxMpBase"	value="4"		desc="基础魔法"/>
+		<field name="AttrType_maxMpAdd"		value="5"		desc="魔法数值修正"/>
+		<field name="AttrType_maxMpPer"		value="6"		desc="魔法百分比修正"/>
+
+		<field name="AttrType_maxHp"		value="9"		desc="生命上限(计算战斗力使用)"/>
+		<field name="AttrType_maxMp"		value="10"		desc="魔法上限(计算战斗力使用)"/>
+		<field name="AttrType_phyDef"		value="11"		desc="物理防御(计算战斗力使用)"/>
+		<field name="AttrType_magDef"		value="12"		desc="魔法上限(计算战斗力使用)"/>
+		<field name="AttrType_minAtk"		value="13"		desc="最小攻击(计算战斗力使用)"/>
+		<field name="AttrType_maxAtk"		value="14"		desc="最大攻击(计算战斗力使用)"/>
+		<field name="AttrType_holyAtk"		value="15"		desc="神圣攻击(计算战斗力使用)"/>
+		<field name="AttrType_holyDef"		value="16"		desc="神圣防御(计算战斗力使用)"/>
+
+		<field name="AttrType_minAtkBase"	value="19"		desc="基础最小攻"/>
+		<field name="AttrType_minAtkAdd"	value="20"		desc="最小攻数值修正"/>
+		<field name="AttrType_minAtkPer"	value="21"		desc="最小攻百分比修正"/>
+
+		<field name="AttrType_maxAtkBase"	value="22"		desc="基础最大攻"/>
+		<field name="AttrType_maxAtkAdd"	value="23"		desc="最大攻数值修正"/>
+		<field name="AttrType_maxAtkPer"	value="24"		desc="最大攻百分比修正"/>
+
+		<field name="AttrType_phyDefBase"	value="25"		desc="基础物防"/>
+		<field name="AttrType_phyDefAdd"	value="26"		desc="物防数值修正"/>
+		<field name="AttrType_phyDefPer"	value="27"		desc="物防百分比修正"/>
+		
+		<field name="AttrType_magDefBase"	value="28"		desc="基础魔防"/>
+		<field name="AttrType_magDefAdd"	value="29"		desc="魔防数值修正"/>
+		<field name="AttrType_magDefPer"	value="30"		desc="魔防百分比修正"/>
+
+		<field name="AttrType_phyAtkRate"		value="40"		desc="物理伤害率"/>
+		<field name="AttrType_magAtkRate"		value="41"		desc="魔法伤害率"/>
+		<field name="AttrType_phyDefRate"		value="42"		desc="物理减伤率"/>
+		<field name="AttrType_magDefRate"		value="43"		desc="魔法减伤率"/>
+		<field name="AttrType_phyAtkAdd"		value="44"		desc="附加物理伤害"/>
+		<field name="AttrType_phyAtkSub"		value="45"		desc="抵抗物理伤害"/>
+		<field name="AttrType_magAtkAdd"		value="46"		desc="附加魔法伤害"/>
+		<field name="AttrType_magAtkSub"		value="47"		desc="抵抗魔法伤害"/>
+		<field name="AttrType_hitRate"			value="48"		desc="命中"/>
+		<field name="AttrType_dodgeRate"		value="49"		desc="闪避"/>
+		<field name="AttrType_excellentRate"	value="50"		desc="卓越一击率"/>
+		<field name="AttrType_luckyRate"		value="51"		desc="幸运一击率"/>
+		<field name="AttrType_ignoreRate"		value="52"		desc="无视一击率"/>
+		<field name="AttrType_criticalRate"		value="53"		desc="致命一击率"/>
+		<field name="AttrType_consumeMpRate"	value="54"		desc="耗魔率"/>
+		<field name="AttrType_phyReflectRate"	value="55"		desc="物理反弹几率"/>
+		<field name="AttrType_phyReflectPer"	value="56"		desc="物理反弹伤害"/>
+		<field name="AttrType_magReflectRate"	value="57"		desc="魔法反弹几率"/>
+		<field name="AttrType_magReflectPer"	value="58"		desc="魔法反弹伤害"/>
+		<field name="AttrType_bloodRate"		value="59"		desc="吸血几率"/>
+		<field name="AttrType_bloodPer"			value="60"		desc="吸血比例"/>
+		<field name="AttrType_resumeHp"			value="61"		desc="生命恢复"/>
+		<field name="AttrType_resumeMp"			value="62"		desc="魔法恢复"/>
+		<field name="AttrType_phyStrikeRate"	value="63"		desc="物理穿透率"/>
+		<field name="AttrType_phyStrikeAdd"		value="64"		desc="物理穿透值"/>
+		<field name="AttrType_magStrikeRate"	value="65"		desc="魔法穿透率"/>
+		<field name="AttrType_magStrikeAdd"		value="66"		desc="魔法穿透值"/>
+
+		<field name="AttrType_moveSpeedPer"		value="67"		desc="移动速度修正"/>
+		<field name="AttrType_hitRateFixed"			value="68"		desc="命中修正"/>
+		<field name="AttrType_dodgeRateFixed"		value="69"		desc="闪避修正"/>
+
+		<field name="AttrType_atkBase"			value="101"		desc="基础攻击"/>
+		<field name="AttrType_atkAdd"			value="102"		desc="攻击数值修正"/>
+		<field name="AttrType_atkPer"			value="103"		desc="攻击百分比修正"/>
+		<field name="AttrType_defBase"			value="104"		desc="基础防御"/>
+		<field name="AttrType_defAdd"			value="105"		desc="防御数值修正"/>
+		<field name="AttrType_defPer"			value="106"		desc="防御百分比修正"/>
+		<field name="AttrType_atkRate"			value="107"		desc="伤害率"/>
+		<field name="AttrType_atkDamage"		value="108"		desc="附加伤害"/>
+		<field name="AttrType_defRate"			value="109"		desc="减伤率"/>
+		<field name="AttrType_atkSub"			value="110"		desc="抵抗伤害"/>
+		<field name="AttrType_strikeRate"		value="111"		desc="防御穿透率"/>
+		<field name="AttrType_strikeAdd"		value="112"		desc="防御穿透"/>
+		<field name="AttrType_encourgeAtkRate"	value="113"		desc="鼓舞伤害率" />
+		<field name="AttrType_encourgeDefRate"	value="114"		desc="鼓舞减伤率" />
+		
+		<field name="AttrType_strePer"			value="120"		desc="力量加成" />
+		<field name="AttrType_streAdd"			value="121"		desc="力量附加" />
+		<field name="AttrType_dextPer"			value="122"		desc="敏捷加成" />
+		<field name="AttrType_dextAdd"			value="123"		desc="敏捷附加" />
+		<field name="AttrType_consPer"			value="124"		desc="体力加成" />
+		<field name="AttrType_consAdd"			value="125"		desc="体力附加" />
+		<field name="AttrType_intePer"			value="126"		desc="智力加成" />
+		<field name="AttrType_inteAdd"			value="127"		desc="智力附加" />
+		<field name="AttrType_moveSpeedAdd"		value="128"		desc="移动速度附加"/>
+        <field name="AttrType_killMonsterExpPer"  value="150" desc="杀怪经验加成"/>
+        <field name="AttrType_killMonsterCoinPer"   value="151" desc="杀怪金币加成"/>
+		
+		<field name="AttrType_roleAtkDamagePer"			value="160"       desc="对角色伤害百分比加成"/>
+        <field name="AttrType_monsterAtkDamagePer"		value="161"       desc="对怪物伤害百分比加成"/>
+        <field name="AttrType_roleDefDamagePer"			value="162"       desc="伤害百分比减少"/>
+        <field name="AttrType_monsterDefDamagePer"		value="163"       desc=""/>
+
+        <field name="AttrType_luckyDefRate"				value="164"       desc="幸运一击抗性"/>
+        <field name="AttrType_luckyAtkDamagePer"		value="165"       desc="幸运一击伤害加成"/>
+        <field name="AttrType_luckyDefDamagePer"		value="166"       desc="幸运一击伤害减少"/>
+
+        <field name="AttrType_excellentDefRate"			value="167"       desc="卓越一击抗性"/>
+        <field name="AttrType_excellentAtkDamagePer"	value="168"       desc="卓越一击伤害加成"/>
+        <field name="AttrType_excellentDefDamagePer"	value="169"       desc="卓越一击伤害减少"/>
+
+        <field name="AttrType_ignoreDefRate"			value="170"       desc="无视一击抗性"/>
+        <field name="AttrType_ignoreAtkDamagePer"		value="171"       desc="无视一击伤害加成"/>
+        <field name="AttrType_ignoreDefDamagePer"		value="172"       desc="无视一击伤害减少"/>
+
+        <field name="AttrType_criticalDefRate"			value="173"       desc="致命一击抗性"/>
+        <field name="AttrType_criticalAtkDamagePer"		value="174"       desc="致命一击伤害加成"/>
+        <field name="AttrType_criticalDefDamagePer"		value="175"       desc="致命一击伤害减少"/>
+
+        <field name="AttrType_controlDefRate"			value="176"       desc="控制抵抗概率"/>
+        <field name="AttrType_controlIgnoreDefRate"		value="177"       desc="忽视控制抵抗概率"/>
+
+        <field name="AttrType_waterAttrAtkPer"			value="178"       desc="水属性伤害加成"/>
+        <field name="AttrType_waterAttrDefPer"			value="179"       desc="水属性伤害减少"/>
+        <field name="AttrType_fireAttrAtkPer"			value="180"       desc="火属性"/>
+        <field name="AttrType_fireAttrDefPer"			value="181"		  desc=""/>		 
+        <field name="AttrType_wingAttrAtkPer"			value="182"       desc="风属性"/>
+        <field name="AttrType_wingAttrDefPer"			value="183"		  desc=""/>
+        <field name="AttrType_thunderAttrAtkPer"		value="184"       desc="雷属性"/>
+        <field name="AttrType_thunderAttrDefPer"		value="185"		  desc=""/>
+        <field name="AttrType_landAttrAtkPer"			value="186"       desc="地属性"/>
+        <field name="AttrType_landAttrDefPer"			value="187"		  desc=""/>
+        <field name="AttrType_darkAttrAtkPer"			value="188"       desc="暗属性"/>
+        <field name="AttrType_darkAttrDefPer"			value="189"		  desc=""/>
+
+        <field name="AttrType_ignoreAttrDefPer"			value="190"       desc="忽视抗性"/>
+        <field name="AttrType_doubleCoinLootPer"		value="191"       desc="双倍金币掉落概率"/>
+        <field name="AttrType_doubleItemLootPer"		value="192"       desc="双倍道具掉落概率"/>
+		<field name="AttrType_AtkLevel"		            value="193"       desc="增加(等级/5)攻击力"/>
+        <field name="AttrType_defLevel"		            value="194"       desc="增加(等级/5)防御力"/>
+		 <field name="AttrType_GemAdd"		            value="195"       desc="增加一个宝石孔"/>
+         <field name="AttrType_AllEmementDefPer"		value="196"       desc="全体属性抗性"/>
+         <field name="AttrType_AllEmementAtkPer"		value="197"       desc="全体属性伤害"/>
+		 <field name="AttrType_MaxHpLevel"		        value="198"       desc="增加(等级/x)生命上限"/>
+		 <field name="AttrType_CollectHorseSpeedUpPer"  value="199"       desc="坐骑抓捕加速百分比"/>
+         
+         <field name="AttrType_GemHpPer"		value="301"       desc="宝石百分比加基础属性强化追加"/>
+         <field name="AttrType_GemAtkPer"		value="302"       desc="宝石百分比加基础属性强化追加"/>
+         <field name="AttrType_GemPhyDefPer"		value="303"       desc="宝石百分比加基础属性强化追加"/>
+         <field name="AttrType_GemMagDefPer"		value="304"       desc="宝石百分比加基础属性强化追加"/>
+         <field name="AttrType_GemHitPer"		value="305"       desc="宝石百分比加基础属性强化追加"/>
+         <field name="AttrType_GemDodgePer"		value="306"       desc="宝石百分比加基础属性强化追加"/>
+         <field name="AttrType_EquipBaseAttrPer"		value="310"       desc="装备基础属性提升"/>
+         <field name="AttrType_EquipEnhanceAttrPer"		value="311"       desc="装备强化和追加属性提升"/>
+         <field name="AttrType_EquipGemAttrPer"		value="312"       desc="装备位已镶嵌的宝石属性提升"/>
+         <field name="AttrType_HpPoolPer"		value="313"       desc="生命值补给效果提升"/>
+         <field name="AttrType_AidEffectPer"		value="314"       desc="急救药恢复效果提升"/>
+         <field name="AttrType_maxShieldBase"		value="315"		desc="护盾基础值" />
+         <field name="AttrType_maxShieldAdd"		value="316"		desc="护盾值修正" />
+         <field name="AttrType_maxShieldPer"		value="317"		desc="护盾百分比修正" />
+         <field name="AttrType_shieldAbsorbRate"		value="318"		desc="护盾吸收率" />
+         <field name="AttrType_resumeShield"		value="319"		desc="护盾回复" />
+         <field name="AttrType_ignoreShieldRate"		value="320"		desc="无视护盾一击率" />
+         <field name="AttrType_ignoreShieldDefRate"		value="321"		desc="抵抗无视护盾一击率" />
+         <field name="AttrType_maxShield"		value="322"		desc="护盾基上限(计算战斗力使用)"/>
+         <field name="AttrType_resumeShieldPer"		value="323"		desc="护盾回复百分比" />
+         <field name="AttrType_EquipPowerOnAttrPer"		value="330"       desc="装备追加属性提升"/>
+         <field name="AttrType_horseExpPromotePer"		value="331"       desc="坐骑经验药水效果提升"/>
+         <field name="AttrType_petExpPromotePer"		value="332"       desc="宠物经验药水效果提升"/>
+         <field name="AttrType_bossAtkDmgPer"			value="333"       desc="boss伤害百分比加成"/>
+         <field name="AttrType_normalEliteAtkDmgPer"	value="334"       desc="小怪精英伤害百分比加成"/>
+         <field name="AttrType_phyReflectDefRate"	value="335"		desc="抵抗物理反弹几率"/>
+		 <field name="AttrType_phyReflectDefPer"	value="336"		desc="抵抗物理反弹伤害"/>
+		 <field name="AttrType_magReflectDefRate"	value="337"		desc="抵抗魔法反弹几率"/>
+		 <field name="AttrType_magReflectDefPer"	value="338"		desc="抵抗魔法反弹伤害"/>
+		 <field name="AttrType_holyAtkBase"			value="339"		desc="神圣攻击基础值"/>
+		 <field name="AttrType_holyAtkAdd"			value="340"		desc="神圣攻击附加修正"/>
+		 <field name="AttrType_holyAtkPer"			value="341"		desc="神圣攻击百分比修正"/>
+		 <field name="AttrType_holyDefBase"			value="342"		desc="神圣防御基础值"/>
+		 <field name="AttrType_holyDefAdd"			value="343"		desc="神圣防御附加修正"/>
+		 <field name="AttrType_holyDefPer"			value="344"		desc="神圣防御百分比修正"/>
+		 <field name="AttrType_holyAtkDmgPer"		value="345"		desc="神圣伤害加成"/>
+		 <field name="AttrType_holyDefDmgPer"		value="346"		desc="神圣伤害减免"/>
+		 <field name="AttrType_maxRage"				value="347"		desc="怒气值上限"/>
+		 <field name="AttrType_transformTimePer"	value="348"		desc="变身时间百分比加成"/>
+		 <field name="AttrType_transformRagePer"	value="349"		desc="变身能量获取加成"/>
+
+		 <field name="AttrType_killMonsterResumeHp"			value="351"		desc="击杀怪物回复生命"/>
+		 <field name="AttrType_killMonsterResumeHpPer"		value="352"		desc="击杀怪物回复生命百分比"/>
+		 <field name="AttrType_killRoleResumeHp"			value="353"		desc="击杀玩家回复生命"/>
+		 <field name="AttrType_killRoleResumeHpPer"			value="354"		desc="击杀玩家回复生命百分比"/>
+		 <field name="AttrType_killMonsterResumeShield"		value="355"		desc="击杀怪物回复护盾"/>
+		 <field name="AttrType_killMonsterResumeShieldPer"	value="356"		desc="击杀怪物回复护盾百分比"/>
+		 <field name="AttrType_killRoleResumeShield"		value="357"		desc="击杀玩家回复护盾"/>
+		 <field name="AttrType_killRoleResumeShieldPer"		value="358"		desc="击杀玩家回复护盾百分比"/>
+
+		 <field name="AttrType_ignoreResistRate"	value="361"		desc="忽抗一击率"/>
+		 <field name="AttrType_ignoreResistDefRate"	value="362"		desc="忽抗一击抗性"/>
+		 <field name="AttrType_ignoreResistAtkDamagePer"	value="363"		desc="忽抗一击伤害加成"/>
+		 <field name="AttrType_ignoreResistDefDamagePer"	value="364"		desc="忽抗一击减免"/>
+
+		 <field name="AttrType_petSecDmgAdd"	value="365"		desc="宠物秒伤增加"/>
+		 <field name="AttrType_petDmgPer"		value="366"		desc="宠物伤害增加百分比"/>
+		 <field name="AttrType_petFightExpPer"	value="367"		desc="出战宠物经验加成"/>
+		 <field name="AttrType_petXieExpPer"	value="368"		desc="协战宠物经验加成"/>
+		 <field name="AttrType_petZhuExpPer"	value="369"		desc="助战宠物经验加成"/>
+		 <field name="AttrType_expPerBuff"		value="370"		desc="人物经验加成"/>
+	</enum>
+	
+	<enum name="ExchangeSrcType"		target_name="AttrInfo"		desc="兑换原类型">
+		<field name="ExchangeSrcType_Normal"		value="0"			desc="普通来源"/>		
+		<field name="ExchangeSrcType_RolePanel"		value="1"			desc="角色面板"/>
+		<field name="ExchangeSrcType_Market"		value="2"			desc="市场"/>
+		<field name="ExchangeSrcType_AutoBuy"	value="3"			desc="自动购买"/>
+		<field name="ExchangeSrcType_ItemMake"		value="4"			desc="锻造"/>
+	</enum>	
+	
+	<enum name="CampType"		target_name="CommonInfo"		desc="阵营类型">
+		<field name="CampType_Role"			value="1"		desc="玩家默认阵营"/>
+		<field name="CampType_PVE_A"		value="2"		desc="PVE_A" />
+		<field name="CampType_PVE_B"		value="3"		desc="PVE_B" />
+		<field name="CampType_PVE_C"		value="4"		desc="PVE_C" />
+		<field name="CampType_PVP_A"		value="5"		desc="PVP_A" />	
+		<field name="CampType_PVP_B"		value="6"		desc="PVP_B" />
+		<field name="CampType_PVP_C"		value="7"		desc="PVP_C" />
+	</enum>
+	
+	<enum name="MonsterCamp" target_name="MonsterInfo"		desc="怪物攻击阵营数量" >
+		<field name="MonsterAtkCampSize"	value="2"		desc="怪物攻击阵营数量" />
+	</enum>
+	
+	<enum name="MonsterExpType" target_name="MonsterInfo"		desc="怪物经验分配方式" >
+		<field name="Montser_DmgMax"	value="0"		desc="伤害最高获得" />
+		<field name="Montser_DmgShare"	value="1"		desc="伤害平分"/>
+		<field name="Montser_DmgRatio"	value="2"		desc="伤害比例分配"/>
+		<field name="Montser_DmgAll"	value="3"		desc="伤害获得全部经验"/>
+	</enum>
+
+	<enum name="MonsterDmgBelongType" target_name="MonsterInfo"		desc="掉落归属统计方式" >
+		<field name="MonsterDmgBelongType_None"	value="0"		desc="不统计" />
+		<field name="MonsterDmgBelongType_Self"	value="1"		desc="个人"/>
+		<field name="MonsterDmgBelongType_Team"	value="2"		desc="队伍"/>
+	</enum>	
+	
+	<enum name="TaskType" target_name="TaskTypeInfo"		desc="任务类型" >
+		<field name="Task_Type_None"			value="0"		desc="直接完成类型" />
+		<field name="Task_Type_Communication"	value="1"		desc="对话类型" />
+		<field name="Task_Type_LevelUp"			value="2"		desc="升级类型" />
+		<field name="Task_Type_Kill_Monster"	value="3"		desc="杀怪类型" />
+		<field name="Task_Type_Collect_Item"	value="4"		desc="收集物品类型" />
+		<field name="Task_Type_Pass_Story_Instance"	value="5"		desc="通关剧情副本类型" />
+		<field name="Task_Type_Kill_Monster1"	value="6"		desc="杀怪随机类型" />
+		<field name="Task_Type_Change_Occupation"		value="7"		desc="转职类型(基础转高级)" />
+		<field name="Task_Type_Wing_Enhance"			value="8"		desc="翅膀强化等级类型" />
+		<field name="Task_Type_Wing_Advance"			value="9"		desc="翅膀进阶等级类型" />
+		<field name="Task_Type_EquipPos_Enhance"		value="10"		desc="装备部位强化等级类型" />
+		<field name="Task_Type_EquipPos_Enhance_Sum"	value="11"		desc="装备部位强化等级之和类型" />
+		<field name="Task_Type_BlackShop_Buy"	value="12"		desc="黑市购买类型" />
+		<field name="Task_Type_Skill_LevelUp"	value="13"		desc="技能等级类型" />
+		<field name="Task_Type_Occupation_Upgrade"	value="14"		desc="职业进阶" />
+		<field name="Task_Type_Enter_Activity_Instance"	value="15"		desc="进入活动副本类型" />
+		<field name="Task_Type_Enter_Team_Instance"	value="16"		desc="进入组队副本类型" />
+		<field name="Task_Type_Enter_PVP_Instance"	value="17"		desc="进入PVP副本类型" />
+		<field name="Task_Type_Enter_Arena_Instance"	value="18"		desc="进入竞技场副本类型" />
+		<field name="Task_Type_Pass_Activity_Instance"	value="19"		desc="通关活动副本类型" />
+		<field name="Task_Type_Pass_Team_Instance"	value="20"		desc="通关组队副本类型" />
+		<field name="Task_Type_Pass_PVP_Instance"	value="21"		desc="通关PVP副本类型" />
+		<field name="Task_Type_Pass_ClimbTower_Instance"	value="22"		desc="通关爬塔副本类型" />
+		<field name="Task_Type_Shop_Buy"	value="23"		desc="商店购买类型" />
+		<field name="Task_Type_Market_Buy"	value="24"		desc="交易行购买类型" />
+		<field name="Task_Type_Pet_LevelUp"			value="25"		desc="宠物达到等级类型" />
+		<field name="Task_Type_Pet_Learn_Skill"		value="26"		desc="宠物学习技能类型" />
+		<field name="Task_Type_Pet_Refine"			value="27"		desc="宠物洗练类型" />
+		<field name="Task_Type_Join_Guild"			value="28"		desc="加入战盟类型" />
+		<field name="Task_Type_Horse_LevelUp"		value="29"		desc="坐骑达到等级类型" />
+		<field name="Task_Type_Pass_Story_Instance_2"	value="30"		desc="通关剧情副本类型(包含非任务副本)" />
+		<field name="Task_Type_Make_Equip"			value="31"		desc="打造战盟装备" />
+		<field name="Task_Type_Occupation_Exchange"	value="32"		desc="转职类型(高级互转)" />
+		<field name="Task_Type_Equip_Refine"	value="33"		desc="装备洗练" />
+		<field name="Task_Type_Worship"		value="34"		desc="膜拜" />
+		<field name="Task_Type_EquipPos_PowerOn"		value="35"		desc="装备部位追加等级类型" />
+		<field name="Task_Type_Story_Ins_Star"		value="36"		desc="剧情副本评级星数" />	
+		<field name="Task_Type_Collection"		value="37"		desc="采集任务" />
+		<field name="Task_Type_Cross_Map"		value="38"		desc="跨越地图" />
+		<field name="Task_Type_Horse_Advance"		value="39"		desc="坐骑升星" />
+		<field name="Task_Type_GuildContribut"		value="40"		desc="战盟捐赠" />
+		<field name="Task_Type_GuildCaravanPay"		value="41"		desc="商队缴纳" />
+		<field name="Task_Type_GuildTask"		    value="42"		desc="狩猎任务" />
+		<field name="Task_Type_GuildToast"		    value="43"		desc="战盟敬酒" />
+		<field name="Task_Type_GuildInstance"		    value="44"		desc="参与魔物入侵" />
+		<field name="Task_Type_HonorLevelUp"		    value="45"		desc="提升头衔" />
+		<field name="Task_Type_PetGroup"		    value="46"		desc="宠物组合" />
+		<field name="Task_Type_GuildScienceLevelUp"		    value="47"		desc="战盟科技等级" />
+		<field name="Task_Type_GemNum"		    value="48"		desc="宝石数量" />
+		<field name="Task_Type_UseFruit"		    value="49"		desc="使用果实" />
+		<field name="Task_Type_ReviveGem"		    value="50"		desc="再生宝石使用一次" />
+		<field name="Task_Type_GodWingLevel"		    value="51"		desc="神翼级数" />
+		<field name="Task_Type_ShieldLevel"		    value="52"		desc="护盾级数" />
+		<field name="Task_Type_HoseEquip"		    value="53"		desc="坐骑装备" />
+		<field name="Task_Type_HoseStar"		    value="54"		desc="坐骑升星" />
+		<field name="Task_Type_FinishInstance"		    value="55"		desc="完成一场幻影寺院或2V2" />
+		<field name="Task_Type_UseExpBall"		    value="56"		desc="使用5倍经验球" />
+		<field name="Task_Type_PetStar"		    value="57"		desc="宠物星数" />
+		<field name="Task_Type_HolyVessel"		    value="58"		desc="圣器分解" />
+		<field name="Task_Type_EquipStep"		    value="59"		desc="装备进阶" />
+		<field name="Task_Type_GuildManor"		    value="60"		desc="参与一次领地占领" />
+		<field name="Task_Type_SkillColumn"		    value="61"		desc="技能配置" />
+		<field name="Task_Type_WoldBossReward"		    value="62"		desc="世界boss参与奖励" />
+		<field name="Task_Type_AllocPoint"		    value="63"		desc="分配属性点" />
+		<field name="Task_Type_MagicBookLevel"		    value="64"		desc="梅兰魔法书强化" />
+		<field name="Task_Type_MagicBookChapter"		    value="65"		desc="梅兰魔法书章节镶嵌" />
+		<field name="Task_Type_GodEquipEquip"		    value="66"		desc="神装装备" />
+		<field name="Task_Type_GodEquipSuit"		    value="67"		desc="神装套装" />
+		<field name="Task_Type_GodEquipRefine"		    value="68"		desc="神装洗练" />
+		<field name="Task_Type_GodEquipActivate"		    value="69"		desc="神装激活" />
+		<field name="Task_Type_RuneEquip"		    value="70"		desc="符文镶嵌" />
+		<field name="Task_Type_RuneMake"		    value="71"		desc="符文打造" />
+		<field name="Task_Type_RuneSteUp"		    value="72"		desc="符文进阶" />
+		<field name="Task_Type_SuitEquipIdentify"		    value="73"		desc="套装鉴定" />
+		
+	</enum>
+	
+	<enum name="TaskClass" target_name="TaskTypeInfo"		desc="任务类别" >
+		<field name="Task_Class_Normal"		value="1"		desc="主线任务" />
+		<field name="Task_Class_Reward"		value="2"		desc="悬赏任务" />
+		<field name="Task_Class_Guide"		value="3"		desc="引导任务" />
+		<field name="Task_Class_Occupation"	value="4"		desc="转职任务" />
+		<field name="Task_Class_Branch"		value="5"		desc="支线任务" />
+		<field name="Task_Class_Caravan"	value="7"		desc="商队任务" />
+	</enum>
+
+	<enum name="NpcType" target_name="NpcBaseInfo"		desc="任务类别" >
+		<field name="Task_None"	 value="0"		desc="" />
+		<field name="Task_Store" value="1"		desc="仓库" />
+		<field name="Task_Shop"	 value="2"		desc="商城" />
+		<field name="Task_CocShop"	 value="3"		desc="交易行" />
+		<field name="Task_BlackShop"	 value="4"		desc="黑市" />
+		<field name="Task_Max"	 value="5"		desc="最大值界限" />
+		<field name="Pet_Altas"	 value="6"		desc="宠物图鉴" />
+		<field name="Acivity_Enter"	 value="7"		desc="活动副本" />
+		<field name="Pandora_Enter"	 value="8"		desc="魔王密境" />
+		<field name="HorseRide"	 value="9"		desc="坐骑" />
+		<field name="AllienceParty"	 value="10"		desc="敬酒" />
+		<field name="TaskCollection"	 value="11"		desc="采集" />
+		<field name="TreasureBox"	 value="12"		desc="宝箱" />
+        <field name="NPCSpokesMan"	 value="13"		desc="代言人" />
+
+	</enum>
+
+	<enum name="CollectionType"	target_name="NpcBaseInfo"		desc="采集进度条对应类型" >
+		<field name="CollectionType_NPC"		value="1"		desc="NPC" />
+		<field name="CollectionType_ITEM"		value="2"		desc="道具" />
+	</enum>
+	
+	<enum name="ShopType"	target_name="ShopInfo"		desc="商店类型" >
+		<field name="ShopType_Normal"		value="1"		desc="普通商店" />
+		<field name="ShopType_Black"		value="2"		desc="黑市商店" />
+		<field name="ShopType_Guild"		value="3"		desc="帮会商店" />		
+	</enum>
+
+	<enum name="ChatFromType"	target_name="FriendInfo"		desc="聊天消息来源" >
+		<field name="ChatFromType_None"		value="0"		desc="" />
+		<field name="ChatFromType_Self"		value="1"		desc="自己发送消息" />
+		<field name="ChatFromType_Friend"		value="2"		desc="好友" />
+		<field name="ChatFromType_Stranger"		value="3"		desc="陌生人" />
+	</enum>
+
+	<enum name="DirtyChangeType"	target_name="FriendInfo"		desc="存储数据是否变化" >
+		<field name="DirtyChangeType_None"		value="0"		desc="" />
+		<field name="DirtyChangeType_Mail"		value="1"		desc="邮件变化" />
+		<field name="DirtyChangeType_Chat"		value="2"		desc="消息变化" />
+		<field name="DirtyChangeType_Session"	value="3"		desc="是否未读消息" />
+	</enum>
+
+	<enum name="ChatDate"	target_name="FriendInfo"		desc="聊天消息时间显示" >
+		<field name="ChatDate_None"		value="0"			desc="不显示时间" />
+		<field name="ChatDate_CurrentDay"		value="1"		desc="当前日期" />
+		<field name="ChatDate_SameDay"			value="2"		desc="过去时间同一天" />
+		<field name="ChatDate_NewDay"			value="2"		desc="与过去时间相比不是同一天" />
+	</enum>
+	
+	<enum name="ConstValueType"	target_name="ConstInfo"		desc="常量表标识" >
+		<field name="ConstValueType_ActivityDouble"			value="1"		desc="活动副本双倍经验需要钥匙" />
+		<field name="ConstValueType_ActivityTrible"			value="2"		desc="活动副本三倍经验需要钥匙" />
+		<field name="ConstValueType_HpPoolMax"				value="3"		desc="血池上限" />
+		<field name="ConstValueType_MpPoolMax"				value="4"		desc="蓝池上限" />
+		<field name="ConstValueType_FirstAidPoolMax"		value="5"		desc="急救药上限" />
+		<field name="ConstValueType_FirstAidCD"				value="6"		desc="急救药cd" />
+		<field name="ConstValueType_FirstAidSingleValue"	value="7"		desc="急救药单次补充万分比" />
+		<field name="ConstValueType_CofCSaleCountLimit"		value="8"		desc="商会出售额度" />
+		<field name="ConstValueType_CofCPriceRefreshTime"	value="9"		desc="商会刷新时间" />
+		<field name="ConstValueType_CofCPriceRefreshCount"	value="10"		desc="商会刷新数量" />
+		<field name="ConstValueType_MarketExpireTime"		value="11"		desc="市场过期时间" />
+		<field name="ConstValueType_SameScreenRadius"		value="12"		desc="同屏攻击范围" />
+		<field name="ConstValueType_MarketCD"				value="13"		desc="市场商品购买冷却时间" />
+		<field name="ConstValueType_MedicineHpSetInit"		value="14"		desc="药品回复血量初始设定值" />
+		<field name="ConstValueType_MedicineMpSetInit"		value="15"		desc="药品回复魔法初始设定值" />
+		<field name="ConstValueType_ChangeOccupationLimit"	value="16"		desc="转职等级限制" />
+		<field name="ConstValueType_DbClickInterval"		value="20"		desc="双击时间间隔" />
+		<field name="ConstValueType_FCReward"				value="21"		desc="首充礼包" />
+		<field name="ConstValueType_JoysticResponseTime"	value="22"		desc="摇杆响应时间" />	
+		<field name="ConstValueType_HpMpSacl"				value="23"		desc="客户端显示血蓝急救上限缩放" />	
+		<field name="ConstValueType_DiamondExchangeCrystal"				value="24"		desc="钻石兑换水晶倍数" />	
+		<field name="ConstValueType_DiamondExchangeGold"				value="25"		desc="钻石兑换金币倍数" />	
+		<field name="ConstValueType_ChangeOccupationCondition"			value="26"		desc="完成其中任意一个任务开启转职功能" />
+		<field name="ConstValueType_ReliveItemId"			value="27"		desc="复活需要的道具ID" />
+		<field name="ConstValueType_CreateAllienceCDTime"			value="28"		desc="创建战盟cd时间" />
+		<field name="ConstValueType_CreateAllienceLvLimit"			value="29"		desc="战盟开启等级" />
+		<field name="ConstValueType_CreateAllienceCrystalCost"		value="30"		desc="创建战盟消耗水晶" />
+		<field name="ConstValueType_ResetPointFreeLvLimit"		value="31"		desc="免费洗点最大等级" />
+		<field name="ConstValueType_ResetPointCostCyanite"		value="32"		desc="洗点消耗水晶 " />
+		<field name="ConstValueType_ResetRewardTaskCost"		value="33"		desc="悬赏任务刷新金币消耗 " />
+		<field name="ConstValueType_ReliveCDTime"				value="35"		desc="读秒复活时间(s) " />
+		<field name="ConstValueType_TransCDTime"				value="36"		desc="小地图瞬移进入挂机时间(s) " />
+		<field name="ConstValueType_ReliveCost"				value="37"		desc="复活需要的钻石数量" />
+		<field name="ConstValueType_RenameAllienceCrystalCost"				value="38"		desc="战盟重命名消耗水晶" />
+		<field name="ConstValueType_JoinAllienceMaxLv"				value="41"		desc="战盟加入等级上限" />
+		<field name="ConstValueType_ExpPoolCapacityByTime"				value="42"		desc="经验池容量(小时)" />	
+		<field name="ConstValueType_TeamInstanceMinLevel"				value="45"		desc="组队副本进入最低等级" />
+		<field name="ConstValueType_TicketAtRoleInit"				value="49"		desc="新创建角色默认获得钻石数" />
+		<field name="ConstValueType_MaxGuildMoney"				value="50"		desc="最大战盟资金" />
+		<field name="ConstValueType_MaxGuildContribution"				value="51"		desc="最大战盟贡献" />
+		<field name="ConstValueType_ArenaDefeatChallengeCD"		value="58"		desc="竞技场挑战失败冷却保护CD" />
+		<field name="ConstValueType_ArenaEraseDefeatCDBaseCost"		value="59"		desc="竞技场付费消除保护CD花费钻石常量（*时间=实际花费）" />
+		<field name="ConstValueType_ArenaDailyRewardTime"			value="60"		desc="竞技场排名奖励每日结算时间(H:h)" />
+		<field name="ConstValueType_ArenaRefreshOpponentCD"			value="61"		desc="竞技场刷新对手列表CD时间(s)" />
+		<field name="ConstValueType_ArenaRobotName"					value="66"		desc="竞技场机器人名称" />
+		<field name="ConstValueType_FlowSpeed"				value="63"		desc="飘字时间控制速度" />
+		<field name="ConstValueType_FlowHeight"				value="64"		desc="飘字高度" />
+		<field name="ConstValueType_FlowTime"				value="65"		desc="飘字停留时间" />
+		<field name="ConstValueType_WorshipDailyCount"				value="68"		desc="每日膜拜次数" />
+		<field name="ConstValueType_WorshipMaxCount"				value="69"		desc="最大被膜拜次数" />
+		<field name="ConstValueType_GuildMemberActiveAddExp"				value="70"		desc="战盟每点活跃度增加经验值" />		
+		<field name="ConstValueType_MarketMaxPrice"				value="72"		desc="市场上架最高魔晶价格" />	
+		<field name="ConstValueType_YellowPlayerNameColor"				value="73"		desc="黄名善恶值名字显示" />	
+		<field name="ConstValueType_RedPlayerNameColor"				value="74"		desc="红名善恶值名字显示" />	
+		<field name="ConstValueType_NormalPlayerNameColor"				value="53"		desc="角色头顶玩家名称文本字体颜色(正常善恶值显示)" />	
+		<field name="ConstValueType_GrayPlayerNameColor"				value="75"		desc="灰名善恶值名字显示" />	
+		<field name="ConstValueType_MaxBuffOverlayTime"				value="76"		desc="Buff叠加最大时间(毫秒)" />	
+        <field name="ConstValueType_KillWhitePlayerPK"              value="77"      desc="击杀白名玩家pk值"/>
+        <field name="ConstValueType_KillYellowPlayerPK"              value="78"      desc="击杀黄名玩家pk值"/>
+        <field name="ConstValueType_PKPerMinute"                    value="79"      desc="每分钟pk值减少的数量"/>
+		<field name="ConstValueType_HangTime"                    value="80"      desc="副本不操作挂机时间"/>
+		<field name="ConstValueType_TargetTeleportDefaultLen"     value="81"      desc="目标瞬移在无目标情况下默认的位移距离（默认方向为正方向）"/>
+        <field name="ConstValueType_EquipColorUpRate"               value="82"      desc="装备觉醒初始成功率"/>
+        <field name="ConstValueType_LockOneExtAttrCostNum"          value="83"      desc="锁定一条卓越属性消耗的越晶石"/>
+        <field name="ConstValueType_LockTwoExtAttrCostNum"          value="84"      desc="锁定两条卓越属性消耗的越晶石"/>
+        <field name="ConstValueType_EquipColorUpLuckyMax"           value="85"      desc="觉醒幸运最高值"/>
+        <field name="ConstValueType_NoLockExtAttrCostNum"           value="86"      desc="不锁定消耗卓越属性消耗的卓越晶石"/>
+        <field name="ConstValueType_ExtAttrCostCoin"               value="87"      desc="卓越洗练消耗金币数量跟卓越晶石系数"/>
+        <field name="ConstValueType_SpecailAttrCostNum"             value="88"      desc="史诗洗练消耗的混沌晶石数量"/>
+        <field name="ConstValueType_SpecailAttrCostCoin"            value="89"      desc="史诗洗练消耗金币数量跟混沌晶石系数"/>
+		<field name="ConstValueType_MercenaryFollowLen"				value="90"		desc="雇佣兵离主人多远开始跟随" />
+		<field name="ConstValueType_MercenaryGotoLen"				value="91"		desc="雇佣兵离主人多远开始瞬移(防止卡住)" />
+		<field name="ConstValueType_MaxClimbTowerSweepCount"				value="92"		desc="最大爬塔副本每日扫荡次数" />
+		<field name="ConstValueType_MercenaryLevelParam"			value="95"		desc="雇佣兵等级系数" />
+		<field name="ConstValueType_PassiveSkillAddBuffFlag"		value="96"		desc="被动技能添加buff所属标记" />
+		<field name="ConstValueType_MonsterResumePer"		value="97"		desc="怪物回家,巡逻状态血量回复(占总血量百分比)" />
+		<field name="ConstValueType_MonsterResumeCycle"		value="98"		desc="怪物回血时间周期(单位:毫秒)" />	
+		<field name="ConstValueType_MyMerenaryTitleName"		value="104"		desc="自己雇佣兵血条颜色 名字颜色" />		
+		<field name="ConstValueType_MyTeamMerenaryTitleName"	value="105"		desc="队友和盟友雇佣兵血条颜色 名字颜色" />		
+		<field name="ConstValueType_OtherMerenaryTitleName"		value="106"		desc="其他雇佣兵血条颜色 名字颜色" />	
+		<field name="ConstValueType_HitParam"					value="107"		desc="战斗公式命中参数(万分比)" />
+		<field name="ConstValueType_ArenaExportRankTime"			value="108"		desc="竞技场每日定时输出排名时间" />
+		<field name="ConstValueType_ArenaExportRankCount"			value="109"		desc="竞技场每日定时输出排名数量限制" />
+		<field name="ConstValueType_WorlkRankLogTime"			value="110"		desc="世界排行榜每日定时输出排名时间" />
+		<field name="ConstValueType_WorldRankLogCount"			value="111"		desc="世界排行榜每日定时输出排名数量限制" />
+		<field name="ConstValueType_WorldChatLimitLevel"			value="112"		desc="世界聊天限制等级" />
+		<field name="ConstValueType_WorldChatFreqLimit"			value="113"		desc="世界聊天频率限制" />
+		<field name="ConstValueType_MapLineAutoLimit"			value="114"		desc="地图自动分线阀值" />
+		<field name="ConstValueType_ButtonCollTime"			value="116"		desc="按钮冷却时间" />
+		<field name="ConstValueType_MoWuRuQinRange"			value="117"		desc="魔物入侵触发区域范围" />
+		<field name="ConstValueType_MarketRefreshPriceInterval"		value="121"		desc="市场刷新计算标准价格时间间隔" />
+		<field name="ConstValueType_MarketNoticeTime"		value="122"		desc="市场物品上架公示期(s)" />
+		<field name="ConstValueType_RoleAttrInitPoint"		value="123"		desc="角色初始可分配属性点" />
+		<field name="ConstValueType_PracticeGetTime"		value="124"		desc="修炼提取时间(单位:秒)" />
+		<field name="ConstValueType_PracticeMaxTime"		value="125"		desc="修炼时间总额上限(单位:秒)" />
+		<field name="ConstValueType_PracticeDailyAddTime"		value="126"		desc="修炼每日增加时间(单位:秒)" />		
+		<field name="ConstValueType_PracticeItemCount"		value="127"		desc="每日修炼道具使用上限" />		
+		<field name="ConstValueType_PracticeItemID"		value="128"		desc="修炼道具编号" />			
+		<field name="ConstValueType_PracticeExpMul"		value="129"		desc="修炼杀怪经验系数(百分比)" />	
+		<field name="ConstValueType_ModelRotateSpeed"		value="130"		desc="模型旋转速度" />	
+		<field name="ConstValueType_MarketBanSalePeriod"		value="136"		desc="市场禁止上架时间段" />	
+		<field name="ConstValueType_OffKillMonTimeMul"		value="137"		desc="离线杀怪时间系数(百分比)" />	
+		<field name="ConstValueType_MinOffKillMonTime"		value="138"		desc="离线最短杀怪时间(单位:秒)" />	
+		<field name="ConstValueType_MaxOffKillMonTime"		value="139"		desc="离线最长杀怪时间(单位:秒)" />
+		<field name="ConstValueType_MaxOffTime"		value="140"		desc="离线时间最大值(单位:秒)" />
+		<field name="ConstValueType_RefershNearTeamCD"		value="141"		desc="附近队伍刷新CD(单位:秒)" />
+		<field name="ConstValueType_RefershTargetTeamCD"		value="142"		desc="目标队伍刷新CD(单位:秒)" />
+		<field name="ConstValueType_LinkMesTag"							value="143"		desc="消息链接标识" />
+		<field name="ConstValueType_TeamExpBuffId"							value="146"		desc="组队经验Buff编号" />
+		<field name="ConstValueType_LoginQueueBegNum"				value="147"		desc="登录排队多少人开始小于等于单服最大人数" />
+		<field name="ConstValueType_LoginQueuePerSec"				value="148"		desc="登录排队人数小于最大人数时，每秒进入多少个" />
+		<field name="ConstValueType_MatchInstanceMapId"				value="149"		desc="匹配机制集合地图id" />
+		<field name="ConstValueType_ChatLimit"						value="151"		desc="聊天字符长度" />
+		<field name="ConstValueType_GuildBuildTaskMaxRing"			value="152"		desc="战盟建设任务最大环" />
+		<field name="ConstValueType_VoiceLimit"						value="153"		desc="聊天语音时间长度" />
+		<field name="ConstValueType_TreasFlowerTime"				value="154"		desc="挖宝进度条时间（毫秒）" />
+		<field name="ConstValueType_GuildGuardHomeRefreshDayTimes"	value="155"		desc="守护家园每日刷新次数" />
+		<field name="ConstValueType_GuildGuardHomeRefreshMoney"		value="156"		desc="守护家园刷新需要战盟资金" />
+		<field name="ConstValueType_Version_Minor"					value="158"		desc="最低协议版本号" />
+		<field name="ConstValueType_Version_Major"					value="159"		desc="最高协议版本号" />
+		<field name="ConstValueType_GuildEliteScoreMul"					value="160"		desc="战盟精英评分系数" />	
+		<field name="ConstValueType_ConstValueType_RecoverCD"					value="161"		desc="打坐恢复cd时间(毫秒)" />	
+		<field name="ConstValueType_GuildMaxPrestige"					value="162"		desc="战盟最大声望" />
+		<field name="ConstValueType_GuildSendNoticeCost"					value="163"		desc="战盟发布公告消耗(金币)" />
+		<field name="ConstValueType_HorseAttrValueScore"					value="167"		desc="坐骑属性数值评分(白绿蓝紫橙)" />
+		<field name="ConstValueType_HorseAttrIdScore"					value="168"		desc="坐骑属性类型评分(初级中级高级)" />
+		<field name="ConstValueType_HorsePrimeryAttrId"						value="169"		desc="坐骑初级属性ID" />
+		<field name="ConstValueType_HorseSecondaryAttrId"					value="170"		desc="坐骑中级属性ID" />
+		<field name="ConstValueType_HorseAdvancedAttrId"					value="171"		desc="坐骑高级属性ID" />
+		<field name="ConstValueType_GuildDailyGiftId"					value="178"		desc="战盟每日礼包编号" />		
+		<field name="ConstValueType_MaxGuildBonus"					value="179"		desc="最大战盟红利" />
+		<field name="ConstValueType_GuildPartyQuizTime"			value="180"		desc="战盟酒会出题间隔时间(秒)" />
+		<field name="ConstValueType_GuildPartyQuizCount"					value="181"		desc="战盟酒会出题数" />
+		<field name="ConstValueType_GuildPartyExpTime"					value="182"		desc="战盟酒会经验获得间隔时间(秒)" />
+		<field name="ConstValueType_GuildPartyToastCount"					value="183"		desc="战盟酒会敬酒次数" />
+		<field name="ConstValueType_RewardTaskStarItem"						value="184"		desc="悬赏任务星星兑换" />
+		<field name="ConstValueType_IdentifyHorseTime"						value="185"		desc="坐骑鉴定时间" />
+		<field name="ConstValueType_GuildSceneMapId"						value="186"		desc="战盟场景编号" />		
+		<field name="ConstValueType_CatchHorseDistance"						value="187"		desc="坐骑抓捕最大距离" />		
+		<field name="ConstValueType_GuildPartyStartDayTime"						value="188"		desc="战盟酒会开启时间(小时#分钟)" />		
+		<field name="ConstValueType_GuildPartyLastTime"						value="189"		desc="战盟酒会持续时间(秒)" />		
+		<field name="ConstValueType_GuildPartyQuizStartTime"						value="190"		desc="战盟酒会答题开始时间(秒)" />		
+		<field name="ConstValueType_GuildDailyGiftNeedContri"						value="191"		desc="战盟每日礼包领取消耗贡献" />			
+		<field name="ConstValueType_MountIntervalTime"						value="192"		desc="骑乘间隔时间" />
+		<field name="ConstValueType_GuildCaravanSeekHelpCount"						value="193"		desc="战盟商队求助次数" />
+		<field name="ConstValueType_GuildCaravanDailyHelpCount"						value="194"		desc="战盟商队每日帮助次数" />
+		<field name="ConstValueType_GuildCaravanMinProgress"						value="195"		desc="战盟商队最低进度" />
+		<field name="ConstValueType_GuildCaravanMaxProgress"						value="196"		desc="战盟商队最大进度" />
+		<field name="ConstValueType_MountLeftWarTime"						value="197"		desc="脱战时间（秒）包含技能动作时间" />
+		<field name="ConstValueType_HorseExpAdd"						value="198"		desc="坐骑经验药剂提供经验" />
+		<field name="ConstValueType_PetExpAdd"						value="199"		desc="宠物经验药剂提供经验" />
+		<field name="ConstValueType_HorseExpItemID"					value="203"		desc="宠物经验药剂道具ID" />
+		<field name="ConstValueType_UnlockHonorID"					value="204"		desc="初解锁头衔ID" />
+		<field name="ConstValueType_BattleInstanceStartTime"		value="205"		desc="战场每日开启时间" />
+		<field name="ConstValueType_BattleInstanceEndTime"			value="206"		desc="战场每日结束时间" />
+		<field name="ConstValueType_SpeedBase"					    value="208"		desc="宠物经验药剂道具ID" />
+		<field name="ConstValueType_SpeedWalk"					value="209"		desc="走路速度加成" />
+		<field name="ConstValueType_SpeedFly"			value="210"		desc="飞行速度加成" />
+		<field name="ConstValueType_SpeedSwim"			value="211"		desc="游泳速度加成" />
+		<field name="ConstValueType_FlowCount"			value="212"		desc="FlowLabel数量上线" />
+		<field name="ConstValueType_ProgressOffset"			value="213"		desc="坐骑抓捕Loading界面偏移" />
+		<field name="ConstValueType_LoginQueueParamA"		value="215"		desc="登录排队人数显示参数A" />
+		<field name="ConstValueType_LoginQueueParamB"		value="216"		desc="登录排队人数显示参数B" />
+		<field name="ConstValueType_GuildPartyExpMul"		value="221"		desc="战盟酒会挂机经验系数(万分比)" />
+		<field name="ConstValueType_WorshipExpMul"			value="222"		desc="膜拜经验系数(万分比)" />
+		<field name="ConstValueType_NextDayRewardOpenLevel"	value="223"		desc="次日登录开放等级" />
+		<field name="ConstValueType_NextDayRewardPet"		value="224"		desc="次日登录奖励宠物" />
+		<field name="ConstValueType_SwitchLineMapMax"		value="227"		desc="玩家自由切线地图角色数量上限" />
+		<field name="ConstValueType_PracticeOpenLevel"		value="228"		desc="修炼开放等级" />
+		<field name="ConstValueType_DayExchangeGoldMax"		value="233"		desc="每日兑换金币上限" />
+		<field name="ConstValueType_DayExchangeCyantieMax"	value="234"		desc="每日兑换水晶上限" />
+		<field name="ConstValueType_ExchangeGoldMax"		value="235"		desc="单次兑换金币上限" />
+		<field name="ConstValueType_ExchangeCyantieMax"		value="236"		desc="单次兑换水晶上限" />
+		<field name="ConstValueType_OnlineRewardOpenLevel"	value="238"		desc="在线礼包功能开启等级" />
+		<field name="ConstValueType_DropItemDistance"	value="239"		desc="道具手套和武器离地距离" />
+        <field name="ConstValueType_EnhanceSuitNum"	value="240"		desc="强化追加套装属性件数" />
+        <field name="ConstValueType_SevenRewardOpenLevel"	value="241"		desc="七天登录开启等级" />
+		<field name="ConstValueType_AllienceEquipBuildTime"	value="242"		desc="战盟打造装备延时（毫秒）" />
+        <field name="ConstValueType_TeamWorldAnnounceCD"	value="243"		desc="组队世界邀请喊话cd" />
+		<field name="ConstValueType_InviteTeamMemberCD"		value="244"		desc="组队队长发起进入副本倒计时CD" />
+		<field name="ConstValueType_SevenAchieveOpenLevel"	value="245"		desc="七日达成开启等级" />
+		<field name="ConstValueType_MarketPriceUpMaxPer"	value="251"		desc="交易行价格最大涨幅（万分位）" />
+		<field name="ConstValueType_MarketPriceDownMaxPer"	value="252"		desc="交易行价格最大跌幅（万分位）" />
+		<field name="ConstValueType_ExpPrizeOpenLevel"	value="254"		desc="离线/修炼经验奖励开启等级" />
+		<field name="ConstValueType_EquipEnhanceGridID"	value="280"		desc="添加装备进阶引导时候优先排序的装备ID" />
+		<field name="ConstValueType_EquipAwakeGridID"	value="281"		desc="添加装备觉醒引导时候优先排序的装备ID" />
+		<field name="ConstValueType_EnhanceCDTime"	value="282"		desc="自动强化单次间隔时间（毫秒）" />
+		<field name="ConstValueType_AppendCDTime"	value="283"		desc="自动追加单次间隔时间（毫秒）" />
+		<field name="ConstValueType_WingStrengthCDTime"	value="284"		desc="翅膀自动强化单次间隔时间（毫秒）" />
+		<field name="ConstValueType_OffExpPrizeVipBuyMul"	value="285"		desc="离线经验Vip购买消耗水晶(水晶/分钟)" />
+		<field name="ConstValueType_ItemDetectInterval"		value="286"		desc="道具拾取自动吸附时间间隔" />
+		<field name="ConstValueType_RoleRenameCostItemId"		value="287"		desc="角色改名消耗道具ID" />
+		<field name="ConstValueType_WhiteItemName"		value="288"		desc="物品飞出白名单模块" />
+		<field name="ConstValueType_WhiteItemStayTime"		value="289"		desc="道具出现后停留时间（毫秒）" />
+		<field name="ConstValueType_OccTaskFinish"		value="290"		desc="转职任务完成显示转职界面" />
+		<field name="ConstValueType_DropMonsterLevel"		value="291"		desc="掉落大于怪物等级" />
+		<field name="ConstValueType_GuildBuildTaskLimitLevel"		value="293"		desc="战盟建设任务限制等级" />
+		<field name="ConstValueType_GuildCaravanTaskLimitLevel"		value="294"		desc="战盟商会任务限制等级" />
+        <field name="ConstValueType_GemUnEquipCost"		value="295"		desc="宝石卸载花费" />
+		<field name="ConstValueType_RechargeRebateRate"		value="297"		desc="充值返还倍率" />
+		<field name="ConstValueType_AuctionGuildDisTime"		value="298"		desc="战盟拍卖持续时间（秒）" />
+		<field name="ConstValueType_AuctionGlobalDisTime"		value="299"		desc="全服拍卖持续时间（秒）" />
+		<field name="ConstValueType_TurntableMaxFreeDrawTimes"		value="300"		desc="奇迹转盘每日免费次数上限" />
+		<field name="ConstValueType_TurntableDrawOneTimesCost"		value="301"		desc="单抽货币类型/价格" />
+		<field name="ConstValueType_TurntableDrawTenTimesCost"		value="302"		desc="十连抽货币类型/价格" />
+		<field name="ConstValueType_TurntableRefreshCost"		value="303"		desc="奖池刷新货币类型/价格" />
+		<field name="ConstValueType_TurntableDrawTimes"		value="307"		desc="抽取多少次后，加入1库道具进入随机" />
+		<field name="ConstValueType_GuildFirstJoinContri"		value="308"		desc="首次加入战盟获得贡献值" />
+		<field name="ConstValueType_ResetPoinAutoLevel"			value="309"		desc="小于该等级会自动分配属性大于等于该等级则不自动分配" />
+		<field name="ConstValueType_QiuJinTicketDailyUseCount"			value="310"		desc="囚禁之岛每日门票使用次数" />
+		<field name="ConstValueType_PracticeExpGetPrice"			value="311"		desc="修炼单颗经验球提取价格(钻石)" />
+		<field name="ConstValueType_MaxOffTimeAdd"			value="312"		desc="离线托管卡增加挂机时间(秒)" />
+		<field name="ConstValueType_MaxOffTimeAddItemId"			value="313"		desc="离线托管卡道具编号" />		
+		<field name="ConstValueType_NewbieGuideInstanceId"			value="315"		desc="新手引导关副本ID" />
+		<field name="ConstValueType_AuctionActiveDisTime"			value="316"		desc="拍卖活动持续时间(分钟)" />
+		<field name="ConstValueType_HorseExpShopId"			value="317"		desc="坐骑经验药水商品id" />
+		<field name="ConstValueType_GuildAutoChangeLeaderTime"			value="318"		desc="盟主转让盟主之位时间（小时）" />
+		<field name="ConstValueType_GuildAutoKickTime"			value="319"		desc="自动请离战盟时间（小时）" />
+		<field name="ConstValueType_GuildGuardHomeDefiniteTime"			value="320"		desc="保卫家园默认开启时间(小时#分钟)" />
+		<field name="ConstValueType_GuildInstanceDefiniteTime"			value="321"		desc="魔物入侵默认开启时间(小时#分钟)" />
+		<field name="ConstValueType_GuildOfflineExpGainTime"			value="322"		desc="离线挂机免费领取时间（小时）" />
+		<field name="ConstValueType_GuildAutoDismissTime"			value="323"		desc="战盟自动解散时间（小时）" />
+		<field name="ConstValueType_SetOutExpOpenLevel"			value="326"		desc="暂离功能开启等级" />
+		<field name="ConstValueType_ServerLevelRoleLevelLimit"	value="330"		desc="服务器等级经验加成生效，玩家等级要求" />
+		<field name="ConstValueType_ServerLevelRankNum"			value="331"		desc="服务器等级计算，玩家等级排行榜数量" />
+		<field name="ConstValueType_ServerLevelExpAdd"			value="332"		desc="服务器等级经验加成" />
+		<field name="ConstValueType_GuildSkillAddBuffFlag"			value="333"		desc="战盟技能添加buff所属标记" />
+		<field name="ConstValueType_GuildOffExpTimeGainCount"			value="334"		desc="战盟离线挂机时间每日领取次数" />
+		<field name="ConstValueType_TurnTableOneDrawStarNum"			value="335"		desc="单抽1次获得积分数" />
+		<field name="ConstValueType_TurnTableTenDrawStarNum"			value="336"		desc="单抽10次获得积分数" />
+		<field name="ConstValueType_MonsterDmgStopTime"			value="337"		desc="怪物伤害停止时间(秒)" />
+		<field name="ConstValueType_TeamInstanceExpShareMul"			value="340"		desc="组队副本经验共享系数(万分比)" />
+		<field name="ConstValueType_GuildEquipMakeNoteColor"			value="341"		desc="战盟装备打造公告最低品质" />		
+		<field name="ConstValueType_OffExpOpenInitTime"			value="345"		desc="托管挂机功能开启后初始时间（小时）" />	
+		<field name="ConstValueType_NameValidRange"				value="349"		desc="角色名称合法范围(A#B|C#D)" />
+		<field name="ConstValueType_NewRoleMapPos"				value="350"		desc="角色新手进入地图坐标区域" />
+		<field name="ConstValueType_HpMpPoolBuy"				value="351"		desc="生命，魔法储备直接金币购买(红价格#数量#蓝价格#数量)" />
+		<field name="ConstValueType_OffExpNoDisturbTime"				value="356"		desc="离线挂机消息免打扰最大时长(小时)" />
+		<field name="ConstValueType_MaxOffExp"				value="357"		desc="离线挂机经验值获得上限" />
+		<field name="ConstValueType_GemType"				value="358"		desc="宝石属性关联" />
+		<field name="ConstValueType_MinSkillDmg"				value="359"		desc="技能最小伤害浮动" />
+		<field name="ConstValueType_MaxSkillDmg"				value="360"		desc="技能最大伤害浮动" />
+		<field name="ConstValueType_ArenaChallengeTicket"		value="361"		desc="竞技场挑战券ID(使用可替代次数进入竞技场)" />
+        <field name="ConstValueType_PandoraBeInvite"		value="363"		desc="潘多拉秘境每日被邀请次数" />
+        <field name="ConstValueType_HorseCollectMaxDayTimes"		value="365"		desc="坐骑每日抓捕成功次数上限" />
+		<field name="ConstValueType_TeamLeaderVerifyActivityTimes"		value="366"		desc="组队队长默认同意发起活动时间（秒）" />
+		<field name="ConstValueType_GuildAuctionBonusLimit"		value="367"		desc="战盟拍卖个人获得分红上限（百分比）" />
+		<field name="ConstValueType_HonerShopTipsLv"		value="368"		desc="荣誉商店提示红点等级" />
+		<field name="ConstValueType_GuildEquipMakingAddBless"		value="369"		desc="战盟打造出现卓越装备补偿祝福值" />			
+		<field name="ConstValueType_AuctionOpenLevel"		value="371"		desc="拍卖行功能开启等级" />
+		<field name="ConstValueType_NewbieGuideMapId"			value="373"		desc="新手引导关地图ID" />
+		<field name="ConstValueType_GotoEnempy"			value="374"		desc="传送到仇人身边价格 类型|价格" />
+		<field name="ConstValueType_PrivateChatLevelLimit"			value="375"		desc="私聊等级限制" />
+        <field name="ConstValueType_HorseShopTipsLv"		value="376"		desc="坐骑商店提示红点等级" />
+		<field name="ConstValueType_ReportNum"		    value="377"		desc="每日举报数量" />
+		<field name="ConstValueType_FreeDrawItemId"		    value="378"		desc="免费寻宝消耗道具ID" />
+		<field name="ConstValueType_TaskUseFlyMinDis"		    value="379"		desc="任务飞鞋可传送距离" />
+		<field name="ConstValueType_ReliveInPlacePosition"		    value="380"		desc="连续死亡战盟内播报（职务）" />
+		<field name="ConstValueType_ReliveInPlaceCount"		    value="381"		desc="连续死亡次数" />		
+		<field name="ConstValueType_TaskFlyItemInfoId"		    value="382"		desc="飞鞋道具ID" />
+		<field name="ConstValueType_EveryDayReportTimes"		    value="383"		desc="每天举报次数" />
+		<field name="ConstValueType_HolyVesselAttrList"		    value="384"		desc="圣器属性列表" />
+		<field name="ConstValueType_HolyVesselOpenLevel"		    value="385"		desc="圣器开放等级" />
+		<field name="ConstValueType_CaptureMountsRefreshCD"		    value="386"		desc="天降神驹界面更新时间间隔（秒）" />
+		<field name="ConstValueType_MarketCreditMax"		    value="387"		desc="交易行商誉值上限" />
+		<field name="ConstValueType_Reporttime"		        value="388"		desc="举报冷却时间" />
+		<field name="ConstValueType_PrivilegeCardAddHangTime"		        value="389"		desc="奇迹特权卡，挂机时间上限时间增加（秒）" />
+		<field name="ConstValueType_PrivilegeCardReward"		        value="390"		desc="特权卡购买后返还货币/数量" />
+		<field name="ConstValueType_GuildAddOffTime"		        value="391"		desc="战盟离线托管每日增加时间（秒）" />
+		<field name="ConstValueType_BaseOffTime"		        value="392"		desc="离线托管基础时长（秒）" />
+		<field name="ConstValueType_TaskFlyInterval"		        value="393"		desc="任务传送允许点击间隔" />
+		<field name="ConstValueType_MapCount"						value="394"		desc="大地图数量" />
+		<field name="ConstValueType_RedPacketHidenTime"		        value="395"		desc="界面红包提醒消失时间" />
+		<field name="ConstValueType_RedPacketGiveOutTimeOut"		        value="396"		desc="红包发放过期时间" />
+		<field name="ConstValueType_RedPacketOpenMaxTime"		    value="397"		desc="每日红包开启数量" />
+		<field name="ConstValueType_RedPacketMinGetValuePer"		    value="399"		desc="红包分配最小百分比" />
+		<field name="ConstValueType_RedPacketMaxGetValuePer"		    value="400"		desc="红包分配最最大百分比" />				
+        <field name="ConstValueType_PandoraSystip"		    value="402"		desc="挖出来好东西公告" />	
+        <field name="ConstValueType_OutOfFightInterval"		    value="405"		desc="脱离战斗时间(ms)" />
+        <field name="ConstValueType_OneKeyFinishRewardTaskPrice"	value="406"		desc="悬赏任务一键完成价格" />
+        <field name="ConstValueType_OneKeyFinishRewardTaskExpRatio"	value="407"		desc="悬赏任务一键完成经验系数" />
+        <field name="ConstValueType_RedPacketTimeOut"				value="408"		desc="红包超时删除时间" />
+		<field name="ConstValueType_RedPacketRecordMaxCount"		value="409"		desc="红包记录最大数" />
+		<field name="ConstValueType_EquipEnhanceNotice"		value="413"		desc="装备强化到达几阶时公告" />
+		<field name="ConstValueType_ArenaWin"		value="414"		desc="竞技场连胜次数公告" />
+		<field name="ConstValueType_EquipPowerOnNotice"		value="415"		desc="装备追加到达几阶时公告" />
+        <field name="ConstValueType_ShareAward"     value="416" desc="分享奖励"/>
+		<field name="ConstValueType_ArenaRankNotice"     value="417" desc="进入竞技场前N名播放公告"/>
+		<field name="ConstValueType_MarketRandNoticeTime"     value="418" desc="交易行随机上架时间(秒)"/>
+		<field name="ConstValueType_WorldBossBottomPrizeDmgPer"     value="421" desc="魔王死亡时对魔王造成伤害保底奖励发放条件（万分比）"/>
+		<field name="ConstValueType_RedFortressTicketDailyUseCount"			value="422"		desc="赤色要塞每日门票使用次数" />
+		<field name="ConstValueType_HuanYingTicketDailyUseCount"			value="423"		desc="幻影寺院每日门票使用次数" />
+		<field name="ConstValueType_JueDouChangTicketDailyUseCount"			value="424"		desc="角斗场每日门票使用次数" />
+		<field name="ConstValueType_AmounceNoticeUpTime"     value="425" desc="个人公告翻页毫秒"/>
+		<field name="ConstValueType_AmounceNoticeDisTime"     value="426" desc="个人公告消失毫秒"/>
+		<field name="ConstValueType_GlobalChatItem"     value="427" desc="跨服聊天消耗道具"/>
+		<field name="ConstValueType_GuildBuildTaskOpenPreTaskId"     value="428" desc="战盟建设任务开启前置任务"/>
+		<field name="ConstValueType_KalimaVipLv"     value="430" desc="神庙vip等级"/>
+		<field name="ConstValueType_DailyRewardTaskCount"     value="431" desc="悬赏任务每日次数"/>
+		<field name="ConstValueType_BossComingTime"     value="432" desc="魔王即将刷新提前提示时间（秒）"/>
+		<field name="ConstValueType_OfflineExpDoubleGetSpend"     value="433" desc="离线双倍经验领取消耗(货币类型#值)"/>
+		<field name="ConstValueType_GodofWingEnhanceCDTime"     value="434" desc="神翼自动强化单词间隔时间（毫秒）"/>
+		<field name="ConstValueType_BossLevingTime"				value="436" desc="魔王即将离开提前提示时间（秒）"/>
+		<field name="ConstValueType_CheckEquipState"				value="443" desc="装备检测（等级段内多少级检测一次）"/>
+		<field name="ConstValueType_GuildRenameCostItemId"				value="444" desc="战盟改名消耗道具ID"/>
+		<field name="ConstValueType_TeamMonsterDmgStopTime"				value="445" desc="组队掉落移除时间"/>
+		<field name="ConstValueType_EquipRecoverItem"				value="446" desc="装备回收生成道具ID"/>
+		<field name="ConstValueType_TeamInsKillLimitKickTime"				value="448" desc="组队副本杀满踢出时间"/>
+		<field name="ConstValueType_TeamDropMonsterLevel"				value="449" desc="组队无掉落等级差距"/>
+		<field name="ConstValueType_TurntableFreeTime"				value="450" desc="宝藏免费倒计时冷却时间（秒）"/>
+		<field name="ConstValueType_TurntableBigPrizeInit"				value="452" desc="玩家大奖初始系数"/>
+		<field name="ConstValueType_TurntableBigPrizeReset"				value="453" desc="玩家大奖重置系数"/>
+		<field name="ConstValueType_TurntableBigPrizeR"				value="454" desc="宝藏大奖系数R"/>
+		<field name="ConstValueType_LuoLanCityWarOpenDay"				value="456" desc="跨服罗兰城战第一开启时间"/>
+		<field name="ConstValueType_LuoLanCityWarOpenTime"				value="457" desc="跨服罗兰城战开启时间"/>
+		<field name="ConstValueType_LuoLanCityWarEndTime"				value="458" desc="跨服罗兰城战持续时间（秒）"/>
+		<field name="ConstValueType_LuoLanCityWarOpenWeekDay"				value="459" desc="跨服罗兰城战开启日期"/>
+		<field name="ConstValueType_LuoLanCityWarMinLvl"				value="460" desc="跨服罗兰城战最低参战等级"/>
+		<field name="ConstValueType_AutoRecoverEquipColor"				value="461" desc="自动回收的装备等级"/>
+		<field name="ConstValueType_AutoRecoverEquipLvl"				value="462" desc="自动回收装备需要人物等级"/>
+		<field name="ConstValueType_LuoLanGoldCastellanReward"				value="464" desc="罗兰金色城主奖励"/>
+		<field name="ConstValueType_LuoLanSilveryCastellanReward"				value="465" desc="罗兰银色城主奖励"/>
+		<field name="ConstValueType_SealTime"				value="472" desc="等级封印自然时间开始日期时间戳"/>
+		<field name="ConstValueType_ClearSuitEquipId"				value="474" desc="几阶装备以上合成不保留套装属性"/>
+		<field name="ConstValueType_SetRendezvousCD"				value="476" desc="群龙争霸集结点cd"/>
+		<field name="ConstValueType_HangerControlCheckCdTime"				value="477" desc="小秘书挂机野外托管重置CD检查是否有可执行的任务(秒)"/>
+		<field name="ConstValueType_HangerCheckCdTime"				value="478" desc="小秘书挂机托管检查CD(秒)"/>
+		<field name="ConstValueType_HangerPauseWaitTime"				value="479" desc="小秘书暂停等待时间(秒)"/>
+		<field name="ConstValueType_HangerMonthCardActive"				value="480" desc="月卡开启小秘书功能(0不开启1开启)"/>
+		<field name="ConstValueType_HitPowerParam"				value="481" desc="命中率乘方系数"/>
+		<field name="ConstValueType_ReturnPlayerBuffId"			value="482" desc="回流专属BuffID(组队经验加成)"/>
+		<field name="ConstValueType_ExpSealBuffId"			value="483" desc="经验印章BuffID(组队经验加成)"/>
+		<field name="ConstValueType_TeamBuffReqRate"			value="484" desc="组队Buff更新频率（秒）"/>
+		<field name="ConstValueType_BuffUIRefreshRate"			value="485" desc="Buff详细界面刷新频率（秒）"/>
+		<field name="ConstValueType_ReturnPlayerActivityCommentId"			value="486" desc="回流活动ID(勇者归来)"/>
+		<filed name="ConstValueType_BattleConfigureOpenCost"   value="487" desc="战斗配置切换开启格子的5个条件"/>
+		<filed name="ConstValueType_MarketMinPrice" 		value="488" desc="交易行道具最低限价"/>
+		<filed name="CostValueType_ChangeJobLevel" 			value="489" desc="转换职业最低等级"/>
+		<filed name="CostValueType_ChangeJobItems" 			value="490" desc="转换消耗道具"/>
+		<filed name="CostValueType_BackLevelGift" 			value="491" desc="勇者归来礼包（等级）"/>
+		<filed name="CostValueType_BackVipGift" 			value="492" desc="勇者归来礼包（vip）"/>
+        <filed name="ConstValueType_SoulBallWeight" 			value="494" desc="魂珠洗练品质权重"/>
+		<filed name="CostValueType_KillMonsterResumeCD" 	value="495" desc="击杀怪物回复类属性内置cd(ms)"/>
+		<filed name="CostValueType_KillRoleResumeCD"		value="496" desc="击杀玩家回复类属性内置cd(ms)"/>
+		<filed name="CostValueType_MaxReAttrLockCount"		value="497" desc="最大再生属性锁定条数"/>
+		<filed name="CostValueType_StrongestTeamCreateNeedLvl"		value="498" desc="最强战队创建战队所需角色等级"/>
+		<filed name="CostValueType_StrongestTeamAppendNeedLvl"		value="499" desc="最强战队加入战队所需角色等级"/>
+		<filed name="CostValueType_BetMoney"		value="510" desc="竞猜选择金额"/>
+		<filed name="CostValueType_WinBetRatio"		value="512" desc="竞猜成功返还"/>
+		<filed name="ConstValueType_WorldCupGuessReward"  		  value="513" desc="世界杯猜胜负奖励。道具id#道具数量|道具id#道具数量" />
+		<filed name="ConstValueType_WorldCupGuessGroupMatchTime"  		  value="514" desc="世界杯小组赛时间。开始时间#结束时间" />
+		<filed name="ConstValueType_WorldCupGuessGroupMatchFlowerNum"  		  value="515" desc="世界杯小组赛每日鲜花数" />
+		<filed name="ConstValueType_WorldCupGuess16and18Time"  		  value="516" desc="世界杯16强-8强时间。开始时间#结束时间" />
+		<filed name="ConstValueType_WorldCupGuess16and18FlowerNum"  		  value="517" desc="世界杯16强-8强每日鲜花数" />
+		<filed name="ConstValueType_WorldCupGuessSemifinalsTime"  		  value="518" desc="半决赛/决赛时间。开始时间#结束时间" />		
+		<filed name="ConstValueType_WorldCupGuessSemifinalsFlowerNum"  		  value="519" desc="半决赛/决赛每日鲜花数" />
+		<filed name="ConstValueType_WorldCupChampoinItem"             		value="520" desc="决赛道具id"   />
+		<filed name="ConstValueType_ExpedtionSpeedUpItem"    value="525" desc="远征加速道具消耗(#分割)" />
+		<filed name="ConstValueType_ExpedtionSpeedUpTime"    value="526" desc="远征加速时间(秒)" />
+		<filed name="ConstValueType_ExpedtionFriendTime"     value="527" desc="远征协助加速时间(万分比)" />
+		<filed name="ConstValueType_ExpedtionEffectSpeedUpItem"    value="528" desc="远征效果加速道具消耗(#分割)" />
+		<filed name="ConstValueType_ExpedtionEffectSpeedUpTime"    value="529" desc="远征效果加速时间(秒)" />
+		<filed name="ConstValueType_ExpedtionAssistRewardTime"    value="530" desc="远征协助获取奖励次数" />
+		<filed name="ConstValueType_ExpedtionAssistRewardTicket"    value="531" desc="远征协助获取钻石数量" />
+		<filed name="ConstValueType_WorldCupStartEndTime"  		  value="534" desc="世界杯开始结束时间" />
+		<filed name="ConstValueType_WorldCupGuess8and4Time"  		  value="536" desc="世界杯8强时间。开始时间#结束时间" />		
+		<filed name="ConstValueType_GuildAuctionRatio"  				  value="538" desc="战盟拍卖行税率(万分比)" />
+		<filed name="ConstValueType_EloMatchDay1"  				  value="539" desc="新手天梯最大开服天数" />		
+		<filed name="ConstValueType_EloMatchDay2"  				  value="540" desc="中级天梯最大开服天数" />
+		<filed name="ConstValueType_GuildMercenaryHelpTimes"  value="543" desc="战盟佣兵每日可以求助次数" />	
+		<filed name="ConstValueType_GuildMercenaryBeHelpTime"  value="544" desc="战盟佣兵冷却时间（秒）" />
+		<filed name="ConstValueType_ExpedtionStoreSpeedUpTime"   value="546" desc="远征仓库加速时间" />
+		<filed name="ConstValueType_ExpedtionFactorySpeedUpTime"  value="547" desc="远征工厂加速时间" />			
+		<filed name="ConstValueType_DaLanChargeUrl"  				  value="598" desc="大蓝客户端充值url" />
+		<filed name="ConstValueType_DaLanIosChargeUrl"  				  value="599" desc="大蓝ios客户端充值url" />
+		<filed name="ConstValueType_DaLanIosChargeUrl2"  				  value="595" desc="大蓝ios客户端充值url2" />
+		<filed name="ConstValueType_UnlockPetGroup"  				  value="606" desc="解锁宠物格子花费" />
+		<filed name="ConstValueType_GuildAuctionBonusLimitRatio"  				  value="611" desc="添加战盟分红总量上限倍率(万分位)" />
+		<filed name="ConstValueType_ActivityInstanceChaosType"  				  value="612" desc="跨区服活动副本" />
+		<filed name="ConstValueType_PVPInstanceChaosType"  				  value="613" desc="跨区服pvp副本" />
+		<filed name="ConstValueType_PetReliveMinLevel"  				  value="614" desc="宠物可重生最低等级" />
+		<filed name="ConstValueType_PetReliveLevelBackItemId"  				  value="615" desc="宠物重生返回经验物品道具" />
+		<filed name="ConstValueType_PetReliveLevelBackRatio"  				  value="616" desc="宠物重生等级折算比例(百分比)" />
+		<filed name="ConstValueType_PetReliveStepBackRatio"  				  value="617" desc="宠物重生进阶折算比例(百分比)" />	
+		<filed name="ConstValueType_EloMatchDay"  				  value="624" desc="天梯分段。最大开服天数#最大开服天数" />
+		<filed name="ConstValueType_Elo2v2ID"  				  value="626" desc="天梯分段对应2v2副本id" />
+		<filed name="ConstValueType_Elo4v4ID"  				  value="628" desc="天梯分段对应幻影寺院副本id" />		
+		<field name="ConstValueType_Max"							value="635"		desc="最大值，超过该值记得修改" />
+		
+   </enum>
+	
+	<enum name="HitPointType"	target_name="PetSkillInfo"		desc="打击点类型" >
+		<field name="HitPointType_Host"			value="1"		desc="主人" />
+		<field name="HitPointType_Target"		value="2"		desc="目标" />
+	</enum>
+	
+	<enum name="BaseAttrType"		target_name="PetSkillInfo"		desc="属性类型">
+		<field name="BaseAttrType_Stre"		value="1"			desc="力量"/>
+		<field name="BaseAttrType_Dext"		value="2"			desc="敏捷"/>
+		<field name="BaseAttrType_Cons"		value="3"			desc="体力"/>
+		<field name="BaseAttrType_Inte"		value="4"			desc="智力"/>
+	</enum>
+
+	<enum name="PetSkillTargetType"	target_name="PetSkillInfo"		desc="打击目标" >
+		<field name="PetSkillTargetType_Owner"			value="1"		desc="主人" />
+		<field name="PetSkillTargetType_OwnerTeam"		value="2"		desc="主人队友" />
+		<field name="PetSkillTargetType_OwnerTarget"	value="4"		desc="主人目标人" />
+		<field name="PetSkillTargetType_OwnerTargetBoss"	value="8"		desc="boss"/>
+        <field name="PetSkillTargetType_OwnerTargetElite"	value="16"		desc="精英怪"/>
+        <field name="PetSkillTargetType_OwnerTargetNomal"	value="32"		desc="普通怪"/>
+        <field name="PetSkillTargetType_PetSelf"        value="64"      desc="宠物自己"/>
+	</enum>
+
+	<enum name="PetSkillEffectType"		target_name="PetSkillInfo"		desc="宠物技能类型">
+		<field name="PetSkillEffectType_None"			value="0"		desc="" />
+		<field name="PetSkillEffectType_PhyAttack"		value="1"		desc="物理攻击"/>
+		<field name="PetSkillEffectType_MagAttack"		value="2"		desc="魔法攻击"/>
+		<field name="PetSkillEffectType_Heal"			value="3"		desc="治疗"/>
+		<field name="PetSkillEffectType_AddBuff"		value="4"		desc="加buff"/>
+		<field name="PetSkillEffectType_RemoveBuff"		value="5"		desc="删除buff"/>
+		<field name="PetSkillEffectType_Summon"			value="6"		desc="召唤怪物"/>
+		<field name="PetSkillEffectType_PoisonBuff"		value="7"		desc="毒buff" />
+		<field name="PetSkillEffectType_Max"			value="10"		desc="最大值"/>
+	</enum>
+    
+    <enum name="PetSkillPassiveEffectType"   target_name="PetPassiveSkillInfo"   desc="宠物被动技能效果">
+        <field name="PSPEffectType_None"                value="0"       desc=""/>
+        <field name="PSPEffectType_SubCD"               value="1"       desc="降低技能CD"/>
+        <field name="PSPEffectType_PetDamageHeal"       value="2"       desc="宠物造成的伤害恢复主人HP"/>
+        <field name="PSPEffectType_IgnoreDef"           value="3"       desc="完全忽视目标防御"/>
+        <field name="PSPEffectType_DamageAddPer"        value="4"       desc="提升伤害百分比"/>
+        <field name="PSPEffectType_AddBuff"             value="5"       desc="为被击单位施加buff"/>
+        <field name="PSPEffectType_Splash"              value="6"       desc="溅射"/>
+        <field name="PSPEffectType_PoisonBuff"		    value="7"		desc="毒buff" />
+        <field name="PSPEffectType_AddCoin"             value="8"       desc="获得金币"/>
+        <field name="PSPEffectType_AddBaseAttr"         value="9"       desc="加基础属性"/>
+        <field name="PSPEffectType_AddAttr"             value="10"          desc="加属性"/>
+        <field name="PSPEffectType_AddStre"             value="11"          desc="加力量"/>
+        <field name="PSPEffectType_AddInte"             value="12"          desc="加智力"/>
+        <field name="PSPEffectType_AddDext"             value="13"          desc="加敏捷"/>
+        <field name="PSPEffectType_AddCons"             value="14"          desc="加体力"/>        
+		<field name="PSPEffectType_AddAssistAttr"       value="15"          desc="加宠物协/助战百分比"/>       
+		<field name="PSPEffectType_AddHpDefAtk"         value="16"          desc="攻防血"/>   
+		<field name="PSPEffectType_AddAttrByStep"       value="17"          desc="加属性通过阶级"/>   		
+        <field name="PSPEffectType_Max"                 value="18"       desc="最大值"/>
+    </enum>
+    
+    <enum name="PetPassiveSkillTriggerType" target_name="PetPassiveSkillInfo"   desc="宠物被动技能触发类型">
+        <field name="PetPassiveSkillTriggerType_None"   value="0"       desc=""/>
+        <field name="PetPassiveSkillTriggerType_Rand"   value="1"       desc="战斗概率触发"/>
+        <field name="PetPassiveSkillTriggerType_Time"   value="2"       desc="周期触发"/>
+        <field name="PetPassiveSkillTriggerType_Cond"   value="3"       desc="战斗条件触发"/>
+         <field name="PetPassiveSkillTriggerType_SteCurr"   value="4"       desc="出战触发"/>
+    </enum>
+    
+    <enum name="PetPassiveSkillTriggerCond" target_name="PetPassiveSkillInfo"   desc="宠物被动技能触发条件">
+        <field name="PetPassiveSkillTriggerCond_OwenHpPer"          value="1"   desc="主人血量低于百分比"/>
+        <field name="PetPassiveSkillTriggerCond_TargetHpPer"        value="2"   desc="目标血量低于百分比"/>    
+        <field name="PetPassiveSkillTriggerCond_CD"                 value="3"   desc="技能cd好了"/>
+        <field name="PetPassiveSkillTriggerCond_OwenHpPerHigh"      value="4"   desc="主人血量高于百分比"/>
+        <field name="PetPassiveSkillTriggerCond_TargetHpPerHigh"    value="5"   desc="目标血量高于百分比"/>    
+    </enum>
+
+	<enum name="HangArea"		target_name="SkillInfo"		desc="属性类型">
+		<field name="HangArea_SameMap"			value="0"			desc="全地图挂机"/>
+		<field name="HangArea_SameScreen"		value="1"			desc="全屏挂机"/>
+	</enum>
+
+	<enum name="ActiveType"		target_name="ActiveInfo"		desc="活跃度类型">
+		<field name="ActiveType_StoryInstance"		value="1"		desc="剧情副本"/>
+		<field name="ActiveType_ActivityInstance"	value="2"		desc="活动副本"/>
+		<field name="ActiveType_AwardTask"			value="3"		desc="悬赏任务"/>
+		<field name="ActiveType_JJC"				value="4"		desc="竞技场"/>.
+		<field name="ActiveType_TTT"				value="5"		desc="通天之塔"/>
+		<field name="ActiveType_QJZZ"				value="6"		desc="囚禁之岛"/>
+		<field name="ActiveType_ExpInstance"		value="7"		desc="单人经验副本"/>
+		<field name="ActiveType_MonsterInstance"	value="8"		desc="战盟魔物入侵"/>
+		<field name="ActiveType_TeamInstance"		value="9"		desc="组队副本"/>
+		<field name="ActiveType_KDBossInstance"		value="10"		desc="魔王昆顿"/>
+		<field name="ActiveType_GuildParty"			value="11"		desc="战盟酒会"/>
+		<field name="ActiveType_AncientBattleInstacnce"		value="12"		desc="古战场"/>
+		<field name="ActiveType_MeleeInstance"		value="13"		desc="勇者大乱斗"/>
+		<field name="ActiveType_DragHome"			value="14"		desc="龙之乡"/>
+		<field name="ActiveType_GetHorse"			value="15"		desc="抓坐骑"/>
+		<field name="ActiveType_DragFight"		    value="16"		desc="魔龙讨伐"/>
+		<field name="ActiveType_WorldBoss"		    value="17"		desc="世界boss"/>
+		<field name="ActiveType_Instance"		    value="18"		desc="单人副本"/>
+		<field name="ActiveType_AllienceCaravan"	value="19"		desc="战盟商队"/>
+        <field name="ThreeTimesExp"      	        value="20"		desc="3倍经验"/>
+		<field name="ActiveType_Rank"      	        value="21"		desc="日常膜拜"/>
+		<field name="ActiveType_AllenceFighting"    value="22"		desc="领地争夺"/>
+		<field name="ActiveType_WeaponBuild"      	value="23"		desc="战盟打造"/>
+		<field name="ActiveType_HighLadder"      	value="24"		desc="天梯"/>
+		<field name="ActiveType_DailyShare"      	value="50"		desc="每日分享"/>
+	</enum>
+    
+    <enum name="ActiveCompleteType"		target_name="ActiveInfo"		desc="活跃度类型">
+		<field name="ActiveCompleteType_CompleteInstance"		value="1"		desc="完成副本"/>
+		<field name="ActiveCompleteType_EnterInstance"	        value="2"		desc="进入副本"/>
+		<field name="ActiveCompleteType_AwardTask"			    value="3"		desc="悬赏任务"/>
+		<field name="ActiveCompleteType_ClimbTower"				value="4"		desc="指定时间进入地图"/>
+		<field name="ActiveCompleteType_VIPLevel"				value="5"		desc="VIP等级"/>		
+		<field name="ActiveCompleteType_OnEnhance"				value="6"		desc="装备强化"/>	
+		<field name="ActiveCompleteType_OnPowerOn"				value="7"		desc="装备追加"/>	
+		<field name="ActiveCompleteType_loginIn"				value="8"		desc="登录游戏"/>	
+		<field name="ActiveCompleteType_GuildEquipMaking"				value="9"		desc="战盟打造"/>
+        <field name="ActiveCompleteType_InstanceType"				value="10"		desc="进入副本用类型判断"/>
+	</enum>
+
+	<enum name="ActiveSubType"		target_name="ActiveInfo"		desc="活跃度区别类型">
+		<field name="ActiveSubType_Daily"			value="1"		desc="日常活动"/>
+		<field name="ActiveSubType_TimeLimit"		value="2"		desc="限时活动"/>
+		<field name="ActiveSubType_Festival"		value="3"		desc="节日活动"/>
+	</enum>
+  <!-- SystemEffectInfo -->
+  <enum name="EffectType"		target_name="SystemEffectInfo"		desc="特效类型">
+		<field name="SenceEffect"			value="0"			desc="Sence特效"/>
+		<field name="UIEffect"		value="1"			desc="UI特效"/>
+	</enum>
+
+	  <enum name="ItemLinKType"		target_name="ItemBaseInfo"		desc="道具跳转界面">
+		<field name="Link_Enhance"			value="1"			desc="跳转装备强化"/>
+		<field name="Link_Append"			value="2"			desc="跳转装备追加"/>
+		<field name="Link_Refine"			value="3"			desc="跳转装备精炼"/>
+		<field name="Link_WingType"			value="4"			desc="跳转翅膀界面"/>
+		<field name="Link_PetSkill"			value="5"			desc="跳转宠物技能"/>
+		<field name="Link_PetPower"			value="6"			desc="跳转宠物资质"/>
+		<field name="Link_Combine"			value="7"			desc="跳转合成"/>
+		<field name="Link_EmoSquare"			value="8"			desc="跳转恶魔广场"/>
+		<field name="Link_BloodSquare"		value="9"			desc="跳转血色城堡"/>
+		<field name="Link_PlayerSkill"		value="10"			desc="跳转角色技能"/>
+		<field name="Link_PetAttr"			value="11"			desc="跳转宠物属性"/>
+		<field name="Link_ExrRefine"			value="12"			desc="跳转卓越属性洗炼"/>
+		<field name="Link_SpecialRefine"		value="13"			desc="跳转史诗属性洗炼"/>
+		<field name="Link_OnlinePractice"    value="14"			desc="跳转在线修炼"/>
+		<field name="Link_HorseAttrUI"		value="15"			desc="跳转坐骑界面"/>
+		<field name="Link_HorseAdvance"		value="16"			desc="跳转坐骑进阶"/>
+		<field name="Link_HorseWash"    		value="17"			desc="跳转坐骑洗练"/>
+		<field name="Link_GuildContri"    	value="18"			desc="跳转战盟旗帜捐献"/>
+		<field name="Link_ReName"    	value="19"			desc="人物-改名界面"/>
+		<field name="Link_Identify"    		value="20"			desc="跳转道具鉴定"/>
+		<field name="Link_Honor"    			value="21"			desc="跳转头衔晋升"/>
+		<field name="Link_ResetPoint"    			value="22"			desc="跳转人物洗点界面"/>
+        <field name="Link_Setting"    			value="23"			desc="设置界面"/>
+        <field name="Link_ReAttr"    			value="24"			desc="再生界面"/>
+        <field name="Link_Lotto"    			value="25"			desc="宝藏界面"/>
+		<field name="Link_DailyActive"    		value="26"			desc="日常界面"/>
+		<field name="Link_Compose"    		value="53"			desc="跳转道具合成"/>
+        <field name="Link_CrossRealm"    		value="28"			desc="跨服聊天界面"/>
+		<field name="Link_GodOfWing"    		value="29"			desc="神翼界面"/>
+		<field name="Link_CollectionCard"    		value="30"			desc="典藏卡界面"/>
+		<field name="Link_AllenceChangName"    	value="31"			desc="战盟改名界面"/>
+		<field name="Link_Hallow"    	        value="32"			desc="圣器升级界面"/>
+        <field name="Link_HeadPortiait"    	    value="33"			desc="头像界面"/>
+		<field name="Link_MeiLanBook"    	    value="34"			desc="魔法书界面"/>
+        <field name="Link_GodEquip"    	        value="35"			desc="神装界面"/>
+		<field name="Link_Sheild"						value="36"			desc="护盾界面"/>
+        <field name="Link_Rune"						value="37"			desc="符文界面"/>
+		<field name="Link_Talent"						value="38"			desc="大师天赋"/>
+        <field name="Link_Suit"						value="39"			desc="套装"/>
+		<field name="Link_Transformer"						value="40"			desc="变身界面"/>
+		<field name="Link_TransformerUpStar"						value="41"			desc="变身升星界面"/>
+		<field name="Link_TransformerSkin"						value="42"			desc="变身附灵界面"/>
+		<field name="Link_ChangeOcc"						value="43"			desc="更转职业"/>
+		<field name="Link_Enchant"				value="44"			desc="附魔界面"/>
+		<field name="Link_Melting"				value="45"			desc="熔炼界面"/>
+	</enum>
+
+	<enum name="MonsterHpLessEffType"	target_name="MonsterHpLessEffect"		desc="怪物被打掉血效果类型">
+		<field name="MonsterHpLessEffType_SummonMonster"	value="1"		desc="召唤怪物"/>
+        <field name="MonsterHpLessEffType_SetCurrSkill"     value="2"       desc="设置当前技能"/>
+
+		<field name="MonsterHpLessEffType_Max"				value="5"		desc="最大"/>
+	</enum>
+	  
+	  <!-- NewGuideInfo -->
+	<enum name="NewGuideConditionType"	target_name="NewGuideInfo"		desc="开启新手引导触发条件类型">
+	  <field name="None"	value="0"		desc="无"/>
+		<field name="Level"	value="1"		desc="等级到达"/>
+	  <field name="Accept"	value="2"		desc="接受任务"/>
+		<field name="Perform"	value="3"		desc="完成任务"/>
+    <field name="InstansEnd"	value="4"		desc="开启结算"/>
+    <field name="MonsterDie"	value="5"		desc="怪物死亡"/>
+  <field name="CompleteAimGuide"	value="6"		desc="完成目标指引"/>
+    <field name="CommitTranfer"	value="7"		desc="完成转职任务"/>
+    <field name="CompleteAimGuideNone"	value="8"		desc="完成目标指引(无道具)"/>
+    <field name="ClickTask"	value="9"		desc="点击任务"/>
+
+  </enum>
+	<enum name="NewGuideType"	target_name="NewGuideInfo"		desc="新手引导类型">
+	  <field name="ForceStep"	value="0"		desc="强制步骤"/>
+	  <field name="NormalTips"	value="1"		desc="普通提示"/>
+	  <field name="Function"	value="2"		desc="功能开启"/>
+	  <field name="TaskTips"	value="3"		desc="任务提示"/>
+	  <field name="AwardTips"	value="4"		desc="奖励提示"/>
+	  <field name="Skill"	value="5"		desc="技能开启"/>
+    <field name="UnForceStep"	value="6"		desc="非强制步骤"/>
+	</enum>
+	 <!-- GuildInfo -->
+	<enum name="GuildPosition"	target_name="GuildInfo"		desc="帮会职务类型">
+	  <field name="GuildPosition_None"			value="0"		desc="候补成员"/>
+	  <field name="GuildPosition_Normal"		value="100"		desc="普通成员"/>
+	  <field name="GuildPosition_Elite"			value="200"		desc="精英"/>	
+	  <field name="GuildPosition_Presbyter"		value="300"		desc="长老"/>
+	  <field name="GuildPosition_DeputyLeader"	value="400"		desc="副帮主"/>
+	  <field name="GuildPosition_Leader"		value="500"		desc="帮主"/>
+	</enum>
+	<enum name="GuildOptType"	target_name="GuildInfo"		desc="帮会操作类型">
+	  <field name="GuildOptType_ChangeName"	value="1"		desc="修改名字"/>
+		<field name="GuildOptType_ChangeContext"	value="2"		desc="修改通告"/>
+		<field name="GuildOptType_ChangeLimitType"	value="3"		desc="修改加入限制类型"/>
+		<field name="GuildOptType_ChangeLimitLevel"	value="4"		desc="修改加入限制等级"/>
+		<field name="GuildOptType_ChangeBadge"	value="5"		desc="修改徽章"/>
+		<field name="GuildOptType_KickMember"	value="6"		desc="踢人"/>
+		<field name="GuildOptType_InviteJoin"	value="7"		desc="邀请加入"/>
+		<field name="GuildOptType_AskJoinAccept"	value="8"		desc="申请加入受理"/>
+		<field name="GuildOptType_LeaveGuild"	value="9"		desc="离开帮会"/>	
+		<field name="GuildOptType_ClearAskJoinAccept"	value="10"		desc="清空申请加入表"/>
+		<field name="GuildOptType_ChangeLeader"	value="11"		desc="转让会长"/>
+		<field name="GuildOptType_OpenInstance"	value="12"		desc="副本开启"/>		
+		<field name="GuildOptType_GrowUpLevel"	value="13"		desc="升级帮会"/>
+		<field name="GuildOptType_ChangePosition"	value="14"		desc="职务任免"/>
+		<field name="GuildOptType_GiveUpLeader"	value="15"		desc="会长卸任"/>
+		<field name="GuildOptType_OpenGuardHome"	value="16"	desc="开启守护家园" />
+		<field name="GuildOptType_SendNotice"	value="17"		desc="通告发送"/>	
+		<field name="GuildOptType_ChangeDeclaration"	value="18"		desc="修改宣言"/>
+		<field name="GuildOptType_BossControl"	value="19"		desc="战盟Boss指挥"/>
+		<field name="GuildOptType_ManorDeclearWar"	value="20"		desc="战盟领地宣战"/>
+	</enum>
+	<enum name="GuildLimitType"	target_name="GuildInfo"		desc="帮会加入限制类型">
+	  <field name="GuildLimitType_NoLimit"	value="0"		desc="自由加入"/>
+		<field name="GuildLimitType_LevelLimit"	value="1"		desc="等级限制"/>
+	</enum>
+	<enum name="GuildAttr"	target_name="GuildInfo"		desc="帮会属性">
+	  <field name="GuildAttr_GuildName"	value="1"		desc="名称"/>
+		<field name="GuildAttr_LeaderName" value="2"		desc="帮主名"/>
+		<field name="GuildAttr_LeaderId"	value="3"		desc="帮主角色编号"/>
+		<field name="GuildAttr_Context"	value="4"		desc="公告"/>		
+		<field name="GuildAttr_Level"	value="5"		desc="等级"/>
+		<field name="GuildAttr_MemCount"	value="6"		desc="成员总数"/>
+		<field name="GuildAttr_MemMaxCount"	value="7"		desc="成员上限"/>
+		<field name="GuildAttr_PKPoint"	value="8"		desc="战力值"/>
+		<field name="GuildAttr_LimitType"	value="9"		desc="限制类型"/>
+		<field name="GuildAttr_LimitLevel"	value="10"		desc="限制等级"/>	
+		<field name="GuildAttr_BadgeId"	value="11"		desc="徽章编号"/>		
+		<field name="GuildAttr_Exp"	value="12"		desc="经验"/>
+		<field name="GuildAttr_Money"	value="13"		desc="金钱"/>
+		<field name="GuildAttr_Prestige"	value="14"		desc="声望"/>		
+		<field name="GuildAttr_Bonus"	value="15"		desc="红利"/>				
+		<field name="GuildAttr_BackUpMemCount"	value="16"		desc="后备成员数"/>	
+		<field name="GuildAttr_Declaration"	value="17"		desc="宣言"/>
+		<field name="GuildAttr_PowerRankNum"	value="18"		desc="战力排名"/>
+	</enum>
+	<enum name="GuildSortType"	target_name="GuildInfo"		desc="战盟排序类型">
+	  <field name="GuildSortType_ID"	value="0"		desc="Id"/>
+		<field name="GuildSortType_Level"	value="1"		desc="等级"/>
+		<field name="GuildSortType_LimitLevel"	value="2"		desc="限制等级"/>
+		<field name="GuildSortType_Power"	value="3"		desc="战力"/>				
+	</enum>
+	<enum name="GuildMemAttr"	target_name="GuildInfo"		desc="帮会成员属性">
+	  <field name="GuildMemAttr_MemName"	value="1"		desc="名称"/>
+		<field name="GuildMemAttr_Level"	value="2"		desc="等级"/>
+		<field name="GuildMemAttr_Position"	value="3"		desc="职务"/>
+		<field name="GuildMemAttr_Occupation"	value="4"		desc="职业"/>		
+		<field name="GuildMemAttr_PKPoint"	value="5"		desc="战力值"/>
+		<field name="GuildMemAttr_CurContribution"	value="6"		desc="成员总数"/>
+		<field name="GuildMemAttr_TotalContribution"	value="7"		desc="成员上限"/>
+		<field name="GuildMemAttr_IsOnline"	value="8"		desc="是否在线"/>
+		<field name="GuildMemAttr_LastLoginTime"	value="9"		desc="最近登陆时间"/>
+		<field name="GuildMemAttr_HasSeekHelp"	value="10"		desc="是否有求助"/>
+	</enum>
+	<enum name="GuildEventType"	target_name="GuildInfo"		desc="帮会事件类型">
+	  <field name="GuildEventType_Create"	value="1"		desc="帮会创建"/>
+		<field name="GuildEventType_MemberLeave"	value="2"		desc="成员离开帮会"/>
+		<field name="GuildEventType_MemberJoin"	value="3"		desc="成员加入帮会"/>
+		<field name="GuildEventType_Rename"	value="4"		desc="帮会重命名"/>		
+	</enum>
+	<enum name="GuildContrType"	target_name="GuildInfo"		desc="帮会捐献类型">
+	  <field name="GuildContrType_Item"	value="1"		desc="捐献物品"/>
+	  <field name="GuildContrType_Cyanite"	value="2"		desc="捐献水晶"/>
+	  <field name="GuildContrType_Diamond"	value="3"		desc="捐献钻石"/>
+	</enum>
+	<enum name="GuildBuildingType"	target_name="GuildBuildingInfo"		desc="帮会建筑类型">
+	  <field name="GuildBuildingType_MainHall"	value="1"		desc="大厅"/>
+		<field name="GuildBuildingType_MoneyStore"	value="2"		desc="金库"/>
+		<field name="GuildBuildingType_Shop"	value="3"		desc="商店"/>
+		<field name="GuildBuildingType_WeaponMakingShop"	value="4"		desc="武器店"/>
+		<field name="GuildBuildingType_ArmorMakingShop"	value="5"		desc="防具店"/>		
+		<field name="GuildBuildingType_CommandCenter"	value="6"		desc="统战厅"/>		
+		<field name="GuildBuildingType_Technology"	value="7"		desc="科技厅"/>
+		<field name="GuildBuildingType_RuneShop"	value="8"		desc="符文工坊"/>
+		<field name="GuildBuildingType_Max"	value="10"		desc="建筑最大值"/>		
+	</enum>		
+	<enum name="GuildBossType"	target_name="GuildBossActiveInfo"		desc="战盟Boss类型">
+	  <field name="GuildBossType_MoLong"	value="1"		desc="魔龙"/>
+	</enum>		
+  <enum name="GuildAttrChgSrcType" target_name="GuildInfo"       desc="战盟属性改变来源类型">
+      <field name="GuildAttrChgSrcType_None"    value="0"   desc="默认类型"/>
+      <field name="GuildAttrChgSrcType_Instance"    value="1"   desc="战盟副本"/>
+  </enum>
+
+	<enum name="ActivityInstanceRewardMode" target_name="ActivityInstanceInfo" desc="活动副本奖励模式" >
+		<field name="ActivityInstanceRewardMode_Normal"		value="1"		desc="普通模式" />
+		<field name="ActivityInstanceRewardMode_Card"		value="2"		desc="翻牌模式" />
+	</enum>
+
+	<enum name="TeamInstanceTeamLimitType" target_name="TeamInstanceInfo" desc="组队副本组队限制类型" >
+		<field name="TeamInsatnceTeamLimitType_None" value="0"	desc="无限制" />
+		<field name="TeamInsatnceTeamLimitType_Solo" value="1"	desc="仅单人" />
+		<field name="TeamInsatnceTeamLimitType_Team" value="2"	desc="仅组队" />
+	</enum>
+  
+    <enum name="ButtonDealType"   target_name="FunctionPushInfo"  desc="未开放时处理方式">
+      <field name="ButtonDealType_None"    value="1"       desc="无"/>
+      <field name="ButtonDealType_Tips"    value="2"       desc="飘字提示"/>
+      <field name="ButtonDealType_Show"    value="3"       desc="隐藏按钮"/>
+      <field name="ButtonDealType_Gray"    value="4"       desc="按钮灰化"/>
+    </enum>
+
+    <enum name="FunctionUnlockType" target_name="FunctionPushInfo" desc="解锁功能类型">
+    	<field name="FunctionUnlockType_None"    		value="0"       desc=""/>
+      	<field name="FunctionUnlockType_Shield"    		value="1"       desc="护盾"/>
+      	<field name="FunctionUnlockType_SkillLevelUp"   value="2"       desc="技能强化"/>
+      	<field name="FunctionUnlockType_HonorPromote"    value="3"       desc="头衔晋升"/>
+      	<field name="FunctionUnlockType_EquipEnhance"    value="4"       desc="装备强化"/>
+      	<field name="FunctionUnlockType_EquipPowerOn"    value="5"       desc="装备追加"/>
+      	<field name="FunctionUnlockType_EquipStepUp"    value="6"       desc="装备进阶"/>
+      	<field name="FunctionUnlockType_EquipOnGem"    	value="7"       desc="装备镶嵌"/>
+      	<field name="FunctionUnlockType_WingEnhance"    value="8"       desc="翅膀强化"/>
+      	<field name="FunctionUnlockType_HorseAdd"    	value="9"       desc="坐骑获取"/>
+      	<field name="FunctionUnlockType_HorseAdvance"    value="10"       desc="坐骑进阶"/>
+      	<field name="FunctionUnlockType_HorseStoneLevelUp"    value="11"       desc="坐骑炼魂"/>
+      	<field name="FunctionUnlockType_PetGain"    value="12"       desc="宠物获取"/>
+      	<field name="FunctionUnlockType_PetStepUp"    value="13"       desc="宠物进阶"/>
+      	<field name="FunctionUnlockType_PetRefine"    value="14"       desc="宠物洗练"/>
+      	<field name="FunctionUnlockType_WorldBoss"    value="15"       desc="世界Boss"/>
+      	<field name="FunctionUnlockType_GuildEquipMake"    		value="16"       desc="战盟装备打造"/>
+      	<field name="FunctionUnlockType_HorseEquip" 		value="17"       desc="坐骑装备"/>
+      	<field name="FunctionUnlockType_GodWing"    		value="18"       desc="神翼"/>
+    </enum>
+
+	<enum name="ProgressInteractType"   target_name="ProgressInfo"  desc="交互类型">
+      <field name="ProgressInteractType_None"    value="1"       desc=""/>
+      <field name="ProgressInteractType_Script"    value="2"       desc="脚本交互"/>
+      <field name="ProgressInteractType_CollectHorse"    value="3"       desc="采集坐骑"/>
+	  <field name="ProgressInteractType_IdentityHorse"    value="4"       desc="鉴定坐骑"/>
+	  <field name="ProgressInteractType_CollectTask"    value="5"       desc="采集任务"/>
+	  <field name="ProgressInteractType_TreasureBox"    value="6"       desc="活动奇迹宝箱"/>
+	  <field name="ProgressInteractType_ScriptCollect"    value="7"       desc="脚本采集"/>
+      <field name="ProgressInteractType_MAX"    value="10"       desc="交互类型最大值"/>
+    </enum>
+	
+	<enum name="ProgressInterruptType"   target_name="ProgressInfo"  desc="打断类型">
+      <field name="ProgressInterruptType_All"    value="1"        desc="所有打断类型"/>
+      <field name="ProgressInterruptType_BeAtt"  value="2"       desc="受击类型除外"/>
+      <field name="ProgressInterruptType_Max"    value="5"       desc="打断类型最大值"/>
+    </enum>
+
+	<enum name="WorldRankType"   target_name="WorldRankInfo"  desc="排行榜类型">
+      <field name="WorldRankType_RoleLevel"    value="1"       desc="个人等级排行"/>
+      <field name="WorldRankType_RolePower"    value="2"       desc="个人战力排行"/>
+      <field name="WorldRankType_RoleHonor"    value="3"       desc="个人头衔排行"/>     
+      <field name="WorldRankType_RoleAchievement"    value="4"       desc="个人成就排行"/>    
+      <field name="WorldRankType_RoleClimbTower"    value="5"       desc="个人通天塔排行"/>       
+      <field name="WorldRankType_RoleEloRank"    value="6"       desc="个人天梯排行"/>
+      <field name="WorldRankType_HolyVessel"    value="7"       desc="个人圣器排行"/>
+	  <field name="WorldRankType_RoleCharm"    value="8"       desc="个人魅力等级"/>
+	  <field name="WorldRankType_RoleTrainLayer"    value="9"       desc="个人试练层数排行"/>
+	  <field name="WorldRankType_RoleEquipEnhance"    value="10"       desc="个人装备强化排行"/>
+	  <field name="WorldRankType_RoleEquipGem"    value="11"       desc="个人宝石镶嵌排行"/>
+      <field name="WorldRankType_RolePetScore"    value="12"       desc="个人宠物总分排行"/> 	  
+      <field name="WorldRankType_RoleWingScore"    value="13"       desc="个人翅膀总分排行"/>
+      <field name="WorldRankType_RoleActCharge"    value="14"       desc="个人活动冲值排行"/>
+       <field name="WorldRankType_RoleActConsume"    value="15"       desc="个人活动消费排行"/>     
+      <field name="WorldRankType_PetScore"    value="101"       desc="宠物排行"/>     
+      <field name="WorldRankType_GuildPower"    value="201"       desc="帮会战力排行"/>
+      <field name="WorldRankType_ArenaRank"    value="301"       desc="竞技场排行"/>
+      <field name="WorldRankType_WingLevel"    value="401"       desc="翅膀等级排行"/>
+      <field name="WorldRankType_HorseScore"    value="501"       desc="坐骑排行"/>
+    </enum>
+    
+ 	<enum name="WorldRankClass"   target_name="WorldRankInfo"  desc="排行榜种类">
+      <field name="WorldRankClass_Role"    value="0"       desc="角色"/>
+      <field name="WorldRankClass_Pet"    value="1"       desc="宠物"/>
+      <field name="WorldRankClass_Guild"    value="2"       desc="帮会"/>
+      <field name="WorldRankClass_Arena"    value="3"       desc="竞技场"/>
+      <field name="WorldRankClass_Wing"    value="4"       desc="翅膀"/>
+      <field name="WorldRankClass_Horse"    value="5"       desc="坐骑"/>
+    </enum>
+
+	<enum name="DotFontClass"   target_name="DotFontType"  desc="buff跳字效果">
+      <field name="DotFontType_Burn"		value="1"       desc="灼烧"/>
+      <field name="DotFontType_Posion"      value="2"       desc="中毒"/>
+	  <field name="DotFontType_Blood"      value="3"       desc="流血"/>
+    </enum>
+
+	<enum name="GuildInstanceState"   target_name="GuildInstanceInfo"  desc="战盟副本状态类型">
+      <field name="GuildInstanceState_NotOpen"		value="0"       desc="未开启"/>
+      <field name="GuildInstanceState_Running"      value="1"       desc="进行中"/>
+      <field name="GuildInstanceState_Ended"      value="2"       desc="已结束"/>
+    </enum>
+    
+    <enum name="PandoraEventType"   target_name="PandoraEventInfo"  desc="潘多拉事件类型">
+        <field name="PandoraEventType_Money"       value="1"    desc="获得金钱"/>
+        <field name="PandoraEventType_Item"         value="2"      desc="获得道具"/>
+        <field name="PandoraEventType_Instance"     value="3"   desc="密境"/>
+        <field name="PandoraEventType_BossInstance" value="4"   desc="boss密境"/>
+    </enum>
+    <enum name="PandoraType"        target_name="PandoraEventInfo"      desc="潘多拉类型">
+        <field name="PandoraType_Normal"        value="1"       desc="锄头"/>
+        <field name="PandoraType_Special"       value="2"       desc="魔盒"/>
+    </enum>
+
+    <enum name="AttrIDType"   target_name="AttrInfo"  desc="属性ID类型">
+    	<field name="AttrIDType_Normal"   		 value="0"       desc="普通属性"/>
+        <field name="AttrIDType_AddSkillLevel"    value="1"       desc="特殊属性增加技能等级"/>
+        <field name="AttrIDType_AddSkillDmgPer"		value="2"		desc="特殊属性增加技能伤害率"/>
+        <field name="AttrIDType_AddSkillDmgAdd"		value="3"		desc="特殊属性增加技能伤害值"/>
+
+        <field name="AttrIDType_Max"              value="3"       desc="属性ID类型最大值"/>
+    </enum>
+
+    <enum name="ResourceType"   target_name="ResourceRefreshInfo"  desc="资源类型">
+    	<field name="ResourceType_NPC"   		 value="1"       desc="NPC"/>
+        <field name="ResourceType_Monster"    	 value="2"       desc="怪物"/>
+    </enum>
+
+    <enum name="ResourceNoticeType"   target_name="ResourceNoticeInfo"  desc="资源类型">
+    	<field name="ResourceNoticeType_CollectHorse"   	 value="1"       desc="抓捕坐骑"/>
+    </enum>
+
+    <enum name="GuildPartyToastType"   target_name="GuildPartyToastInfo"  desc="战盟酒会敬酒类型">
+    	<field name="GuildPartyToastType_Normal"   		 value="1"       desc="普通敬酒"/>
+        <field name="GuildPartyToastType_Advance"    	 value="2"       desc="高级敬酒"/>
+    </enum>
+    
+     <enum name="GuildPartyState"   target_name="GuildPartyToastInfo"  desc="战盟酒会状态">
+    	<field name="GuildPartyState_Close"   		 value="0"       desc="关闭状态"/>
+    	<field name="GuildPartyState_Open"   		 value="1"       desc="开启状态"/>
+     	<field name="GuildPartyState_QuizStart"   		 value="2"       desc="答题开始状态"/>
+     	<field name="GuildPartyState_QuizeEnd"   		 value="3"       desc="答题结束状态"/>    	   	
+    </enum>   
+    
+      <enum name="GuildCaravanTagType"   target_name="GuildCaravanTagInfo"  desc="战盟商队目标类型">
+    	<field name="GuildCaravanTagType_Item"   		 value="1"       desc="物品"/>
+    	<field name="GuildCaravanTagType_Collect"   		 value="2"       desc="采集"/>
+		<field name="GuildCaravanTagType_Instance"   		 value="3"       desc="活动"/>
+    </enum>    
+    <enum name="EquipFuncPos"        target_name="EquipExtAttrTypeInfo"      desc="装备作用部位类型">
+        <field name="EquipFuncPos_Weapon"       value="1"       desc="武器"/>
+        <field name="EquipFuncPos_Head"         value="2"       desc="头盔"/>
+        <field name="EquipFuncPos_Body"         value="3"       desc="身体"/>
+        <field name="EquipFuncPos_Hand"         value="4"       desc="手套"/>
+        <field name="EquipFuncPos_Leg"          value="5"       desc="护腿"/>
+        <field name="EquipFuncPos_Shoes"        value="6"       desc="鞋子"/>
+        <field name="EquipFuncPos_Neck"         value="7"       desc="项链"/>
+        <field name="EquipFuncPos_Ring"         value="8"       desc="戒指"/>
+        <field name="EquipFuncPos_Max"          value="9"       desc="最大值"/>
+    </enum>
+
+    <enum name="RetrieveType"		target_name="RetrieveInfo"		desc="资源找回类型">
+    	<field name="RetrieveType_RewardTask"	value="1"		desc="悬赏任务" />
+		<field name="RetrieveType_ActivityIns"	value="2"		desc="活动副本" />
+		<field name="RetrieveType_PVPIns"		value="3"		desc="pvp副本" />
+		<field name="RetrieveType_KDBossIns"	value="4"		desc="昆顿副本" />
+		<field name="RetrieveType_TeamIns"		value="5"		desc="组队副本" />
+		<field name="RetrieveType_GuildParty"	value="6"		desc="战盟酒会" />
+    </enum>
+
+    <enum name="RetrieveCostType"		target_name="RetrieveInfo"		desc="找回花费方式">
+    	<field name="RetrieveCostType_All"	value="1"		desc="All" />
+		<field name="RetrieveCostType_Coin"	value="2"		desc="金币" />
+		<field name="RetrieveCostType_Cyanite"		value="3"		desc="绑钻" />
+    </enum>
+
+    <enum name="SevenAchieveType"	target_name="SevenAchieveInfo"	desc="七日达成类型">
+    	<field name="SevenAchieveType_Wing"				value="1"		desc="翅膀升星" />
+    	<field name="SevenAchieveType_EquipEnhance"		value="2"		desc="装备强化" />
+    	<field name="SevenAchieveType_EquipPowerOn"		value="3"		desc="装备追加" />
+    	<field name="SevenAchieveType_HorseScore"		value="4"		desc="坐骑评分" />
+    	<field name="SevenAchieveType_PetCollect"		value="5"		desc="宠物收集" />
+    	<field name="SevenAchieveType_PetScore"			value="6"		desc="宠物评分" />
+    	<field name="SevenAchieveType_InstanceStar"		value="7"		desc="副本星星" />
+    	<field name="SevenAchieveType_ArenaRank"		value="8"		desc="竞技场排行" />
+    	<field name="SevenAchieveType_GuildLevel"		value="9"		desc="帮会等级" />
+    	<field name="SevenAchieveType_ClimbTower"		value="10"		desc="爬塔" />
+    	<field name="SevenAchieveType_HorseCollect"		value="11"		desc="坐骑收集" />
+    	<field name="SevenAchieveType_Max"				value="12"		desc="最大值" />
+    </enum>
+    
+    <enum name="VIPPowerType"		target_name="VIPPowerInfo"		desc="VIP特权类型">
+    	<field name="VIPPowerType_PoketStore"	value="1"		desc="随身仓库" />
+			<field name="VIPPowerType_PoketShop"	value="2"		desc="随身药店" />
+			<field name="VIPPowerType_MaxCyaniteConvert"		value="3"		desc="每日兑换水晶上限" />
+			<field name="VIPPowerType_MaxCoinConvert"	value="4"		desc="每日兑换金币上限" />
+			<field name="VIPPowerType_EquipStrengthBless"		value="5"		desc="装备强化失败祝福值初始增加" />
+			<field name="VIPPowerType_WingStrengthBless"	value="6"		desc="翅膀强化失败祝福值初始增加" />
+			<field name="VIPPowerType_BossTransFree"		value="7"		desc="世界BOSS免费传送" />
+			<field name="VIPPowerType_ReliveFreeCount"	value="8"		desc="免费复活次数" />
+			<field name="VIPPowerType_MonExpAdd"		value="9"		desc="杀怪额外经验值" />
+			<field name="VIPPowerType_BlackShopRefreshFree"	value="10"		desc="免费刷新黑市" />
+			<field name="VIPPowerType_WorldChatCount"		value="11"		desc="每天世界频道发言次数" />
+			<field name="VIPPowerType_OnlinePracticeUseItemCount"	value="12"		desc="10倍经验球使用额外上限" />
+			<field name="VIPPowerType_DailyActivityInit"		value="13"		desc="每日初始活跃度" />
+			<field name="VIPPowerType_MaxOfflineExpPrizeTime"	value="14"		desc="离线挂机时长" />
+			<field name="VIPPowerType_OfflineExpPrizeBuy"		value="15"		desc="离线1.5倍经验购买" />
+			<field name="VIPPowerType_EMoGuangChangeAddCount"	value="16"		desc="每日恶魔广场额外次数" />
+			<field name="VIPPowerType_XueSeChengBaoAddCount"		value="17"		desc="每日血色城堡额外次数" />
+			<field name="VIPPowerType_EMoGuangChangeDouble"	value="18"		desc="当日恶魔首通奖励翻倍" />
+			<field name="VIPPowerType_XueSheChengBaoDouble"		value="19"		desc="当日血色首通奖励翻倍" />
+			<field name="VIPPowerType_ArenaBuyCount"	value="20"		desc="竞技场额外购买次数" />
+			<field name="VIPPowerType_ArenaNoCD"		value="21"		desc="竞技场冷却时间移除" />
+			<field name="VIPPowerType_MarketItemAddNume"	value="22"		desc="拍卖行额外上架道具数量" />
+			<field name="VIPPowerType_MarketTax"		value="23"		desc="拍卖行税率减免至" />
+			<field name="VIPPowerType_YongZheGuiLaiBuyCounte"	value="24"		desc="勇者归来可购买加入次数" />
+			<field name="VIPPowerType_GuZhanChangAddJoinTime"		value="25"		desc="古战场额外进入时间" />						
+			<field name="VIPPowerType_GuildEquipMakePrimacyRatio"	value="26"		desc="战盟打造卓越装备出现概率" />
+			<field name="VIPPowerType_GuildHelpAddCount"		value="27"		desc="战盟协助额外次数" />
+			<field name="VIPPowerType_GuildContriCyaniteAddCount"	value="28"		desc="每日战盟额外捐献水晶次数" />
+			<field name="VIPPowerType_GuildPartyToastAddCount"		value="29"		desc="战盟酒会敬酒额外次数" />	
+			<field name="VIPPowerType_StoryInstanceExtraTimes"		value="30"		desc="vip剧情副本扫到额外次数" />				
+			<field name="VIPPowerType_MiniMapTransport"		value="31"		desc="小地图传送" />					
+			<field name="VIPPowerType_GuildContriTicketAddCount"	value="32"		desc="每日战盟额外捐献钻石次数" />	
+			<field name="VIPPowerType_TaskFreeFly"		value="33"		desc="任务不消耗道具传送" />
+			<field name="VIPPowerType_ShieldStrengthBless"		value="34"		desc="护盾强化失败祝福值初始增加" />
+			<field name="VIPPowerType_AutoRecoverEquipFlag"		value="35"		desc="自动回收垃圾需要vip" />
+			<field name="VIPPowerType_RuneBlackShopRefreshFree"	value="36"		desc="免费刷新符文黑市" />
+    </enum>
+
+    <enum name="TitleGetType"		target_name="TitleInfo"		desc="称号获得类别">
+    	<field name="TitleGetType_VIP"				value="1"		desc="VIP等级" />
+    	<field name="TitleGetType_VanguardActivity"	value="2"		desc="先锋测试获得" />
+    	<field name="TitleGetType_LevelUp"			value="3"		desc="升级" />
+    	<field name="TitleGetType_Task"				value="4"		desc="完成任务" />
+		<field name="TitleGetType_Rank"				value="5"		desc="排行榜" />
+    </enum> 
+
+    <enum name="DemageCurveGetType"		target_name="DemageCurveInfo"		desc="漂字提示曲线类型">
+    	<field name="GetType_AttackNormalCurve"				value="1"		desc="攻击普通伤害数字" />
+    	<field name="GetType_AttackSpecialCurve"			value="2"		desc="攻击特殊伤害数字" />
+    	<field name="GetType_BeAttackNormalCurve"			value="3"		desc="受击伤害数字" />
+    	<field name="GetType_BeAttackSpecialCurve"			value="4"		desc="受击特殊伤害数字" />
+        <field name="GetType_EnergyShieldCurve"			value="6"		desc="护盾伤害数字" />
+    </enum> 
+
+<!--
+	<enum name="SurfaceType"		target_name="SurfaceInfo"		desc="界面类型">
+		<field name="Surface_None"				value="0"		desc="" />
+    	<field name="Surface_MainUI"			value="1"		desc="主界面" />
+		<field name="Surface_Daily"				value="2"		desc="日常" />
+		<field name="Surface_Role"				value="3"		desc="角色" />
+		<field name="Surface_Skill"				value="4"		desc="技能" />
+		<field name="Surface_Grow"				value="5"		desc="成长" />
+		<field name="Surface_Compose"			value="6"		desc="合成" />
+		<field name="Surface_AlliList"			value="7"		desc="战盟列表(加入战盟)" />
+		<field name="Surface_Alliance"			value="8"		desc="战盟主界面" />
+		<field name="Surface_Setting"			value="9"		desc="设置" />
+		<field name="Surface_Social"			value="10"		desc="社交" />
+		<field name="Surface_Pack"				value="11"		desc="背包" />
+		<field name="Surface_Task"				value="12"		desc="任务" />
+		<field name="Surface_Team"				value="13"		desc="组队" />
+    	<field name="Surface_Auction"			value="14"		desc="拍卖行" />
+    	<field name="Surface_Trade"				value="15"		desc="交易行" />
+    	<field name="Surface_Mall"				value="16"		desc="商城" />
+		<field name="Surface_Welfare"			value="17"		desc="福利" />
+		<field name="Surface_Map"				value="18"		desc="地图" />
+		<field name="Surface_Rank"				value="19"		desc="排行" />
+		<field name="Surface_Active"			value="20"		desc="开服活动" />
+		<field name="Surface_MorrEntry"			value="21"		desc="次日登陆" />
+		<field name="Surface_Charge"			value="22"		desc="首充" />
+		<field name="Surface_VIP"				value="23"		desc="会员" />
+		<field name="Surface_Strong"			value="24"		desc="我要变强" />
+    </enum> 
+-->
+
+	<enum name="SurfaceRelative"		target_name="SurfaceInfo"		desc="关联关系">
+    	<field name="Relative_Mutex"				value="0"			desc="互斥" />
+    	<field name="Relative_Memory_Together"		value="1"			desc="记忆共存" />
+    	<field name="Relative_Survive_Together"		value="2"			desc="同时存在" />	
+    </enum> 
+
+	<enum name="AuctionClass"		target_name="AuctionInfo"		desc="拍卖种类">
+    	<field name="AuctionClass_Guild"				value="0"			desc="战盟拍卖" />
+    	<field name="AuctionClass_Global"		value="1"			desc="全服拍卖" />
+  </enum> 
+  
+	<enum name="AuctionItemType"		target_name="AuctionInfo"		desc="拍卖物品类型">
+    	<field name="AuctionItemType_SmpItem"				value="0"			desc="简单道具" />		
+    	<field name="AuctionItemType_Item"				value="1"			desc="道具" />
+    	<field name="AuctionItemType_Pet"		value="2"			desc="宠物" />
+    	<field name="AuctionItemType_Horse"		value="3"			desc="坐骑" />
+  </enum>   
+
+	<enum name="AuctionTradeType"		target_name="AuctionInfo"		desc="拍卖交易类型">
+    	<field name="AuctionTradeType_Fixed"				value="0"			desc="一口价成交" />
+    	<field name="AuctionTradeType_Compete"		value="1"			desc="竞拍成交" />
+    	<field name="AuctionTradeType_AbortiveToGlobal"		value="2"			desc="流拍至全服拍卖" />
+  </enum>
+
+	<enum name="AuctionActiveType"		target_name="AuctionInfo"		desc="拍卖活动类型">
+    	<field name="AuctionActiveType_GuildBoss"				value="1"			desc="魔龙讨伐" />
+    	<field name="AuctionActiveType_GuildInstance"		value="2"			desc="魔物入侵" />
+    	<field name="AuctionActiveType_Kundun"		value="3"			desc="昆顿降临" />
+    	<field name="AuctionActiveType_GuildManor"		value="5"			desc="战盟领地" />
+    	<field name="AuctionActiveType_LuoLanIns"		value="6"			desc="罗兰城战" />
+		<field name="AuctionActiveType_DragonFightIns"		value="7"			desc="跨服boss" />
+		<field name="AuctionActiveType_GoldenCastleIns"		value="8"			desc="黄金城堡" />
+    	<field name="AuctionActiveType_Max"		value="9"			desc="拍卖活动最大值" />
+  </enum>
+  <enum name="TeamTargeType"    target_name="TeamTargetInfo"        desc="组队目标类型">
+    <field name="TeamTargeType_Instance" value="1"  desc="组队副本"/>
+    <field name="TeamTargeType_AutoMonster" value="2"   desc="挂机"/>
+  </enum>
+	
+	<enum name="GuildPassiveSkillEffectType" 	target_name="GuildPassiveSkillInfo"		desc="战盟被动技能效果类型" >
+		<field name="GuildPassiveSkillEffectType_AddBuff"	value="1"		desc="增加BUFF" />
+	</enum>
+
+	<enum name="ExpShareType" 	target_name="LevelInfo"		desc="经验共享类型" >
+		<field name="ExpShareType_None"	value="0"		desc="无共享" />
+		<field name="ExpShareType_TeamInstance"	value="1"		desc="组队副本" />		
+	</enum>
+
+	<enum name="MsgPushType" 	target_name="MsgPushInfo"		desc="消息推送类型" >
+		<field name="MsgPushType_OffExpPrize"	value="1"		desc="离线经验奖励" />
+		<field name="MsgPushType_GuildInstance"	value="2"		desc="战盟副本" />
+	</enum>
+
+
+	<enum name="HeroAttrGroup" 	target_name="HeroAttrInfo"		desc="人物属性组" >
+		<field name="HeroAttrGroup_Damage_Add"		value="1"		desc="伤害加成" />
+		<field name="HeroAttrGroup_Damage_Reduce"	value="2"		desc="伤害减免" />
+		<field name="HeroAttrGroup_Luckly_Atk"	value="3"		desc="幸运一击" />
+		<field name="HeroAttrGroup_Excell_Atk"	value="4"		desc="卓越一击" />
+		<field name="HeroAttrGroup_Ignore_Atk"	value="5"		desc="无视一击" />
+		<field name="HeroAttrGroup_Deathy_Atk"	value="6"		desc="致命一击" />
+		<field name="HeroAttrGroup_Elemet_Dma"	value="7"		desc="元素伤害" />
+		<field name="HeroAttrGroup_Elemet_Res"	value="8"		desc="元素抵抗" />
+		<field name="HeroAttrGroup_Double_Drop"	value="9"		desc="双倍掉落" />
+	</enum>
+    
+    <enum name="ElementAttrType" target_name="AttrInfo"       desc="元素属性">
+        <field name="ElementAttrType_None"    value="0"   desc="无"/>
+        <field name="ElementAttrType_Water"    value="1"   desc="水"/>
+        <field name="ElementAttrType_Fire"    value="2"   desc="火"/>
+        <field name="ElementAttrType_Wind"    value="3"   desc="风"/>
+        <field name="ElementAttrType_Thunder"    value="4"   desc="雷"/>
+        <field name="ElementAttrType_Land"    value="5"   desc="地"/>
+        <field name="ElementAttrType_Dark"    value="6"   desc="暗"/>
+        <field name="ElementAttrType_Adaptive"    value="11"   desc="自适应属性"/>
+    </enum>
+    
+    <enum name="ChargeType" target_name="ChargeInfo"    desc="充值类型">
+        <field name="ChargeType_Charge" value="1"       desc="充值"/>
+        <field name="ChargeType_WeekCard" value="2"       desc="周卡"/>
+        <field name="ChargeType_MonthCard" value="3"       desc="月卡"/>
+        <field name="ChargeType_Grow" value="4"       desc="成长系统"/>
+        <field name="ChargeType_ForeverCard" value="5"       desc="终身卡"/>
+		<field name="ChargeType_PrivilegeCard" value="6"       desc="特权卡"/>
+        <field name="ChargeType_Activity" value="7"       desc="超值礼包"/>
+		<field name="ChargeType_Grow2" value="8"       desc="成长系统2"/>
+		<field name="ChargeType_Grow3" value="9"       desc="成长系统3"/>
+    </enum>
+        
+    <enum name="LuoLanInsState" target_name="LuoLanInstanceInfo"    desc="罗兰副本状态">
+        <field name="LuoLanInsState_End" value="0"       desc="结束状态"/>
+        <field name="LuoLanInsState_Open" value="1"       desc="开启状态"/>
+    </enum>
+
+    <enum name="LuoLanInsConstValueType" target_name="LuoLanInstanceConstInfo"    desc="罗兰副本常量">
+        <field name="LuoLanInsConstValueType_HpAddMin" value="0"       desc="最低加成"/>
+        <field name="LuoLanInsConstValueType_HpAdd" value="1"       desc="增加加成"/>
+        <field name="LuoLanInsConstValueType_HpAddParam" value="2"       desc="计算参数"/>
+    </enum>
+    
+    <enum name="GuildManorType" target_name="GuildManorInstanceInfo"    desc="战盟领地类型">
+        <field name="GuildManorType_Center" value="1"       desc="中心领地"/>
+        <field name="GuildManorType_Middle" value="2"       desc="中部领地"/>
+        <field name="GuildManorType_Outside" value="3"       desc="外部领地"/>
+    </enum>
+    
+    <enum name="GuildManorOpenActStep" target_name="GuildManorInstanceInfo"    desc="战盟领地开服活动阶段">
+        <field name="GuildManorOpenActStep_Midle" value="1"       desc="中部领地阶段"/>
+        <field name="GuildManorOpenActStep_Center" value="2"       desc="中心领地阶段"/>
+        <field name="GuildManorOpenActStep_EndShow" value="3"       desc="结束显示阶段"/>
+    </enum>
+	
+	<enum name="Achieventment_MainClass"	target_name="AchieventmentInfo"	desc="所属总类">
+		<field name="Achieventment_Tototal"	value="1"	desc="成就总览"/>
+		<field name="Achieventment_Growth"		value="2"	desc="个人成长"/>
+		<field name="Achieventment_Partner"	value="3"	desc="伙伴培养"/>
+		<field name="Achieventment_Equip"	value="4"	desc="装备打造"/>
+		<field name="Achieventment_Active"	value="5"	desc=" 活动日常"/>
+		<field name="Achieventment_Friend"	value="6"	desc="社交关系"/>
+		<field name="Achieventment_Shine"	value="7"	desc="光辉事迹"/>
+	</enum>
+	
+	<enum name="Achieventment_SubClass"	target_name="AchieventmentInfo"	desc="分项子类">
+		<field name="Achieventment_SubScore"	value="1"	desc="成就总分"/>
+		<field name="Achieventment_SubLevel"		value="2"	desc="等级"/>
+		<field name="Achieventment_SubChangeOcc"	value="3"	desc="转职"/>
+		<field name="Achieventment_SubHorse"	value="4"	desc="坐骑"/>
+		<field name="Achieventment_SubPet"	value="5"	desc="宠物"/>
+		<field name="Achieventment_SubSpirit"	value="6"	desc="精灵"/>
+		<field name="Achieventment_SubEquip"	value="7"	desc="装备"/>
+		<field name="Achieventment_SubBuild"	value="8"	desc="打造"/>
+		<field name="Achieventment_SubKillMonster"	value="9"	desc="杀怪"/>
+		<field name="Achieventment_SubRewardTask"	value="10"	desc="悬赏"/>
+		<field name="Achieventment_SubCaravan"	value="11"	desc="商队"/>
+		<field name="Achieventment_SubActive"	value="12"	desc="活动"/>
+		<field name="Achieventment_SubInstance"	  value="13"	desc="副本"/>
+		<field name="Achieventment_SubBattleInstance"	  value="14"	desc="古战场"/>
+		<field name="Achieventment_SubWorship"	  value="15"	desc="膜拜"/>
+		<field name="Achieventment_SubPVP"	  value="16"	desc="pvp"/>
+		<field name="Achieventment_SubGuild"	  value="17"	desc="战盟"/>
+		<field name="Achieventment_SubArena"	  value="18"	desc="竞技场"/>
+		<field name="Achieventment_SubQiongjing"	  value="19"	desc="囚禁之岛"/>
+		<field name="Achieventment_SubMoLong"	  value="20"	desc="魔龙讨伐"/>
+		<field name="Achieventment_SubKDBoss"	  value="21"	desc="困顿降临"/>
+		<field name="Achieventment_SubManor"	  value="22"	desc="领地争夺"/>
+		<field name="Achieventment_SubPower"	  value="23"	desc="追加"/>
+		<field name="Achieventment_SubGuildScience"	  value="24"	desc="战盟科技"/>
+		<field name="Achieventment_SubWing"	  value="25"	desc="翅膀"/>
+	</enum>
+	
+	<enum name="AchieventmentType"	target_name="AchieventmentInfo"	desc="成就内容">
+		<field name="AchieventmentType_Score"	value="0"	desc="成就总分"/>
+		<field name="AchieventmentType_Level"		value="1"	desc="角色等级"/>
+		<field name="AchieventmentType_ChangeOcc"	value="2"	desc="转职次数"/>
+		<field name="AchieventmentType_Horse"	value="3"	desc="获得坐骑"/>
+		<field name="AchieventmentType_Pet"	value="4"	desc="获得宠物"/>
+		<field name="AchieventmentType_Spirit"	value="5"	desc="获得精灵"/>
+		<field name="AchieventmentType_EquipRing"	value="6"	desc="穿戴戒指"/>
+		<field name="AchieventmentType_Equipstar2"	value="7"	desc="穿戴紫2装备"/>
+		<field name="AchieventmentType_Equipstar3"	value="8"	desc="穿戴紫3装备"/>
+		<field name="AchieventmentType_EquipEnhance"	value="9"	desc="强化介数"/>
+		<field name="AchieventmentType_EquipPower"	value="10"	desc="追加等级"/>
+		<field name="AchieventmentType_EquipStoneLvl1"	value="11"	desc="镶嵌1级宝石"/>
+		<field name="AchieventmentType_BuildEquip"	value="12"	desc="打造装备次数"/>
+		<field name="AchieventmentType_BuildStar1"	  value="13"	desc="打造紫1装备"/>
+		<field name="AchieventmentType_BuildStar2"	  value="14"	desc="打造紫2装备"/>
+		<field name="AchieventmentType_BuildStar3"	  value="15"	desc="打造紫3装备"/>
+		<field name="AchieventmentType_KillMonster"	  value="16"	desc="杀怪数量"/>
+		<field name="AchieventmentType_CommitRewardTask"	  value="17"	desc="完成悬赏任务次数"/>
+		<field name="AchieventmentType_GuildCaravan"	  value="18"	desc="战盟商队发车次数"/>
+		<field name="AchieventmentType_Kantelu"	  value="19"	desc="通关坎特鲁次数"/>
+		<field name="AchieventmentType_EMo"	  value="20"	desc="通关恶魔广场次数"/>
+		<field name="AchieventmentType_Xuese"	  value="21"	desc="通关血色城堡次数"/>
+		<field name="AchieventmentType_Tower"	  value="22"	desc="通关通天之塔次数"/>
+		<field name="AchieventmentType_Cangbao"	  value="23"	desc="通关藏宝海湾次数"/>
+		<field name="AchieventmentType_jingying"	  value="24"	desc="通关精英挑战次数"/>
+		<field name="AchieventmentType_Expball"	  value="25"	desc="使用5倍经验球次数"/>
+		<field name="AchieventmentType_Instance"	  value="26"	desc="通关个人副本次数"/>
+		<field name="AchieventmentType_BattleInstance"	  value="27"	desc="进入古战场次数"/>
+		<field name="AchieventmentType_Worshipr"	  value="28"	desc="膜拜次数"/>
+		<field name="AchieventmentType_Dead"	  value="29"	desc="死亡次数"/>
+		<field name="AchieventmentType_Kill"	  value="30"	desc="击杀次数"/>
+		<field name="AchieventmentType_KillRedRole"	  value="31"	desc="击杀红名玩家次数"/>
+		<field name="AchieventmentType_JoinGuild"	  value="32"	desc="加入战盟"/>
+		<field name="AchieventmentType_GuildContribut"	  value="33"	desc="战盟捐献"/>
+		<field name="AchieventmentType_GuildAnswer"	  value="34"	desc="战盟答题"/>
+		<field name="AchieventmentType_GuildToast"	  value="35"	desc="战盟使用高级敬酒"/>
+		<field name="AchieventmentType_GuildBuild"	  value="36"	desc="战盟升级科技"/>
+		<field name="AchieventmentType_ArenaRank"	  value="37"	desc="竞技场第一名"/>
+		<field name="AchieventmentType_QiujingWing"	  value="38"	desc="囚禁获得一次胜利"/>
+		<field name="AchieventmentType_MoLingWing"	  value="39"	desc="魔龙讨伐个人第一"/>
+		<field name="AchieventmentType_KDBossWing"	  value="40"	desc="困顿个人第一"/>
+		<field name="AchieventmentType_Manor"	  value="41"	desc="占领1次冰霜之城"/>
+		<field name="AchieventmentType_EquipStoneLvl2"	value="42"	desc="镶嵌2级宝石"/>
+		<field name="AchieventmentType_EquipStoneLvl3"	value="43"	desc="镶嵌3级宝石"/>
+		<field name="AchieventmentType_RefreshTaskReward"	value="44"	desc="刷新悬赏任务"/>
+		<field name="AchieventmentType_PetLvl"	value="45"	desc="宠物等级"/>
+		<field name="AchieventmentType_PetGrade"	value="46"	desc="宠物进阶"/>
+		<field name="AchieventmentType_PetRefine"	value="47"	desc="宠物洗练"/>
+		<field name="AchieventmentType_HorseLvl"	value="48"	desc="坐骑等级"/>
+		<field name="AchieventmentType_HorseStar"	value="49"	desc="坐骑星数"/>
+		<field name="AchieventmentType_HorseEquip"	value="50"	desc="坐骑装备"/>
+		<field name="AchieventmentType_WingLvl"	value="51"	desc="翅膀代数"/>
+		<field name="AchieventmentType_GodWingLvl"	value="52"	desc="神翼阶级"/>
+		<field name="AchieventmentType_HorseStoneLvl"	value="53"	desc="坐骑炼魂等级"/>
+		<field name="AchieventmentType_EquipSuitEnchance"	value="54"	desc="全身强化阶数"/>
+		<field name="AchieventmentType_EquipSuitPower"	value="55"	desc="全身追加等级"/>
+		<field name="AchieventmentType_LuoLanCastellan"	value="56"	desc="罗兰城主"/>
+		<field name="AchieventmentType_HolyVessellvl"	value="57"	desc="圣器等级"/>
+		<field name="AchieventmentType_MagicBookLvl"	value="58"	desc="魔法书等级"/>
+		<field name="AchieventmentType_MagicBookChapterGrad"	value="59"	desc="魔法书章节品质"/>
+		<field name="AchieventmentType_MagicBookChapterLvl"	value="60"	desc="魔法书章节等级"/>
+		<field name="AchieventmentType_GodEquipActivate"	value="67"	desc="神装激活"/>
+		
+	</enum>
+    
+    <enum   name="PlaySysType"  target_name="PlaySysInfo"  desc="玩法系统">
+        <field name="PlaySysType_Arena" value="1"       desc="竞技场"/>
+        <field name="PlaySysType_ExpInstance" value="2"       desc="藏宝海湾"/>
+        <field name="PlaySysType_Pandora" value="3"       desc="潘多拉"/>
+        <field name="PlaySysType_WorldBoss" value="4"       desc="世界boss"/>
+        <field name="PlaySysType_Demon" value="5"       desc="恶魔广场"/>
+        <field name="PlaySysType_BloodInstance" value="6"       desc="血色城堡"/>
+        <field name="PlaySysType_Yuanzheng" value="7"       desc="精英挑战"/>
+        <field name="PlaySysType_cantalu" value="8"       desc="坎特鲁"/>
+        <field name="PlaySysType_Qiujin" value="9"       desc="囚禁之岛"/>
+        <field name="PlaySysType_RedFortress" value="10"       desc="赤色要塞"/>
+        <field name="PlaySysType_4v4" value="11"       desc="4v4"/>
+        <field name="PlaySysType_2v2" value="12"       desc="2v2"/>
+    </enum>    
+	<enum name="RedPacketType"	target_name="RedPacketInfo"	desc="红包原因类型">
+		<field name="RedPacketType_Charge"	value="1"	desc="付费冲值"/>
+		<field name="RedPacketType_Achieventment"		value="2"	desc="完成成就"/>
+	</enum>
+	
+	<enum name="RedPacketState"	target_name="RedPacketInfo"	desc="红包状态">
+		<field name="RedPacketState_NotGiveOut"	value="0"	desc="未发送"/>
+		<field name="RedPacketState_GiveOut"	value="1"	desc="已发送"/>
+		<field name="RedPacketState_TimeOut"		value="2"	desc="已过期"/>
+		<field name="RedPacketState_GiveOutEnd"		value="3"	desc="发放结束"/>		
+	</enum>
+	
+	<enum name="RedPacketRecordType"	target_name="RedPacketInfo"	desc="红包记录类型">
+		<field name="RedPacketRecordType_GiveOut"	value="0"	desc="红包发放"/>
+		<field name="RedPacketRecordType_End"	value="1"	desc="红包结束"/>
+	</enum>	
+
+	<enum name="HeadIconUnlockType"	target_name="HeadIconInfo"	desc="头像解锁类型">
+		<field name="HeadIconUnlockType_None"	value="0"	desc=""/>
+		<field name="HeadIconUnlockType_Init"	value="1"	desc="初始"/>
+		<field name="HeadIconUnlockType_Item"	value="2"	desc="消耗道具"/>
+		<field name="HeadIconUnlockType_Level"	value="3"	desc="达到等级"/>
+		<field name="HeadIconUnlockType_OccpationUpgrade"	value="4"	desc="职业进阶"/>
+	</enum>	
+
+	<enum name="HorseSkinActivateType" target_name="HorseSkinInfo" desc="坐骑皮肤激活类型">
+		<field name="HorseSkinActivateType_None"		value="0"	desc=""/>
+		<field name="HorseSkinActivateType_Item"		value="1"	desc="道具激活"/>
+		<field name="HorseSkinActivateType_HorseGet"	value="2"	desc="坐骑获得"/>
+		<field name="HorseSkinActivateType_HorseStar"	value="3"	desc="坐骑升星"/>
+		<field name="HorseSkinActivateType_GuildManor"	value="4"	desc="领地结算"/>
+	</enum>
+
+	<enum name="RuneType" target_name="RuneInfo" desc="符文类型">
+		<field name="RuneType_None"		value="0"	desc=""/>
+		<field name="RuneType_Red"		value="1"	desc="红色符文"/>
+		<field name="RuneType_Blue"		value="2"	desc="蓝色符文"/>
+		<field name="RuneType_Dual"		value="3"	desc="双色符文"/>
+	</enum>	
+
+		<enum name="HangerType" target_name="HangerHelpInfo" desc="挂机小秘书类型">
+		<field name="HangerType_None"		value="0"	desc=""/>
+		<field name="HangerType_RewardTask"		value="1"	desc="悬赏任务"/>
+		<field name="HangerType_CaravnTask"		value="2"	desc="战盟商对任务"/>
+		<field name="HangerType_HungtingTask"		value="3"	desc="战盟狩猎任务"/>
+		<field name="HangerType_DevilInstance"		value="4"	desc="恶魔广场"/>
+		<field name="HangerType_BloodInstance"		value="5"	desc="血色城堡"/>
+		<field name="HangerType_TreasureInstance"		value="6"	desc="藏宝海湾"/>
+		<field name="HangerType_BattleAncientInstance"		value="7"	desc="古战场"/>
+		<field name="HangerType_PagodaInstance"		value="8"	desc="通天塔"/>
+		<field name="HangerType_MainTask"		value="9"	desc="主线任务"/>
+		<field name="HangerType_SingleInstance"		value="10"	desc="单人副本"/>
+		<field name="HangerType_KiLaMa"		value="11"	desc="卡利玛"/>
+		<field name="HangerType_JJC"		value="12"	desc="竞技场"/>
+		<field name="HangerType_Worship"		value="13"	desc="日常膜拜"/>
+		<field name="HangerType_Hang"		value="14"	desc="野外挂机"/>
+	</enum>	
+
+</Project>
